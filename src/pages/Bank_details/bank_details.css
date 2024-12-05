@@ -79,5 +79,17 @@
   transform: translate(-50%, -50%);
 }
 
-
-
+.reconnect{
+  background-color: #f06b5d;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  transition-duration: 0.4s;
+  overflow: hidden;
+}
