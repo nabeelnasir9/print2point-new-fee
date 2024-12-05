@@ -56,6 +56,43 @@ const columns = [
 ];
 
 
+// Function to parse the error string and handle errors
+const parseErrorString = (errorString) => {
+  const errorMessages = [];
+
+  // Split the error string by new lines or spaces to detect error patterns
+  const errorParts = errorString.split('\n').join(' ').split('  ');
+
+  // Check for common error patterns and convert them into user-friendly messages
+  errorParts.forEach((part) => {
+    if (part.includes('external_account')) {
+      errorMessages.push('External account is missing or not linked.');
+    }
+    if (part.includes('tos_acceptance.date') || part.includes('tos_acceptance.ip')) {
+      errorMessages.push('Terms of Service (TOS) acceptance is pending.');
+    }
+    if (part.includes('Verification: Pending')) {
+      errorMessages.push('Account verification is pending.');
+    }
+    if (part.includes('charges_enabled')) {
+      errorMessages.push('Account cannot receive charges. Please complete the required steps.');
+    }
+    if (part.includes('payouts_enabled')) {
+      errorMessages.push('Account cannot process payouts. Please ensure all information is correct.');
+    }
+    if (part.includes('requirements')) {
+      errorMessages.push('Additional requirements are missing or incomplete.');
+    }
+  });
+
+  // If no errors were found, show a generic message
+  if (errorMessages.length === 0) {
+    errorMessages.push('Unknown issue detected. Please check your account settings.');
+  }
+
+  return errorMessages;
+};
+
 
 const Bank_details = () => {
   let agent = localStorage.getItem('agent_loggedIn_user')
@@ -220,7 +257,7 @@ const Bank_details = () => {
                   Information Required: {status.requirements?.eventually_due?.length
                     ? status.requirements.eventually_due.map((error, index) => (
                       <div key={index} style={{ textIndent: "20px" }}>
-                        {index + 1} - {error}
+                        {index + 1} - {parseErrorString(error)}
                       </div>
                     ))
                     : 'None'}
