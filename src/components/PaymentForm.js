@@ -1,179 +1,165 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { loadStripe } from "@stripe/stripe-js";
-import {
-  Elements,
-  CardElement,
-  useStripe,
-  useElements,
-} from "@stripe/react-stripe-js";
+import { Elements, PaymentElement, useStripe, useElements } from "@stripe/react-stripe-js";
+import axios from "axios";
 import { toast } from "react-toastify";
-import axios from 'axios';
 
-
+// Stripe publishable key
 const stripePromise = loadStripe("pk_test_51H31ubHTxsLPmt2xl1NOkurilkbgWSguMRHYP0N2VqVVyLEVOxnFWsF9ZAHGMeAJxBgvhpkpWF0DsniBHzrVPDen008Rr3pFGT");
 
-const PaymentForm = ({ id, setPaymentModal, setCodeSendSuccessfullyModal }) => {
+const PaymentForm = ({ setPaymentModal, setCodeSendSuccessfullyModal, clientSecret }) => {
   const stripe = useStripe();
   const elements = useElements();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  let agent_token = localStorage.getItem("use_access_token");
+  const [paymentMethods, setPaymentMethods] = useState([]);
+  const [selectedPaymentMethod, setSelectedPaymentMethod] = useState(null);
+  const [useNewCard, setUseNewCard] = useState(false); // Flag to determine if the user wants to use a new card
 
-  // const handleSubmit = async (event) => {
-  //   event.preventDefault();
-  //   if (!stripe || !elements) {
-  //     return;
-  //   }
+  // Fetch saved payment methods on component load
+  useEffect(() => {
+    const fetchPaymentMethods = async () => {
+      try {
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/printjob/customer-payment-methods`, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("use_access_token")}`, // Ensure token is passed correctly
+          },
+        });
+        setPaymentMethods(response.data.paymentMethods); // Save the payment methods to state
+      } catch (err) {
+        console.error("Error fetching saved payment methods:", err);
+        toast.error("Failed to fetch saved payment methods.");
+      }
+    };
 
-  //   setLoading(true);
+    fetchPaymentMethods();
+  }, []);
 
-  //   const { error, paymentMethod } = await stripe.createPaymentMethod({
-  //     type: "card",
-  //     card: elements.getElement(CardElement),
-  //   });
+  const handleSubmit = async (event) => {
+    event.preventDefault();
 
-  //   if (error) {
-  //     setError(error.message);
-  //     setLoading(false);
-  //     return;
-  //   }
-
-  //   try {
-  //     if (!agent_token) return toast.error("Please login to your account and try again");
-
-  //     const response = await fetch(`${process.env.REACT_APP_API_URL}/printjob/initiate-payment/`, {
-  //       method: "POST",
-  //       headers: {
-  //         Authorization: `Bearer ${agent_token}`,
-  //       },
-  //       body: JSON.stringify({
-  //         payment_method_id: paymentMethod.id,
-  //         job_id: id,
-  //       }),
-  //     });
-
-  //     if (!response.ok) {
-  //       const text = await response.text();
-  //       console.error(text);
-  //     }
-
-  //     const result = await response.json();
-
-  //     if (result) {
-  //       toast.success("Payment successful! Confirmation Code");
-  //       setPaymentModal(false);
-  //       setCodeSendSuccessfullyModal(true);
-  //     } else {
-  //       toast.error("Payment failed: " + result.message);
-  //     }
-  //   } catch (err) {
-  //     if (error.response && error.response.data && error.response.data.message) {
-  //       toast.error(error.response.data.message);
-  //       console.log(error.response.data.message);
-  //     } else if (error.message) {
-  //       toast.error(error.message);
-  //     } else {
-  //       toast.error("Internal server error");
-  //     }
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
-
-
-
-const handleSubmit = async (event) => {
-  event.preventDefault();
-  if (!stripe || !elements) {
-    return;
-  }
-
-  setLoading(true);
-
-  const { error, paymentMethod } = await stripe.createPaymentMethod({
-    type: "card",
-    card: elements.getElement(CardElement),
-  });
-
-  if (error) {
-    setError(error.message);
-    setLoading(false);
-    return;
-  }
-
-  try {
-    if (!agent_token) {
-      toast.error("Please login to your account and try again");
+    if (!stripe || (!elements && useNewCard)) {
       return;
     }
 
-    const response = await axios.post(
-      `${process.env.REACT_APP_API_URL}/printjob/initiate-payment/`,
-      {
-        payment_method_id: paymentMethod.id,
-        job_id: id,
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${agent_token}`,
-        },
+    setLoading(true);
+    setError(null);
+
+    try {
+      if (useNewCard) {
+        // Confirm payment using PaymentElement
+        const paymentElement = elements.getElement(PaymentElement);
+        if (!paymentElement) {
+          throw new Error("Payment form is not fully loaded.");
+        }
+
+        const { error, paymentIntent } = await stripe.confirmPayment({
+          elements,
+          confirmParams: {
+            return_url: document.location.origin, // Replace with your actual success URL
+          },
+          redirect: "if_required",
+        });
+
+        if (error) {
+          throw new Error(error.message);
+        }
+
+        if (paymentIntent && paymentIntent.status === "succeeded") {
+          toast.success("Payment successful! Confirmation Code");
+          setPaymentModal(false);
+          setCodeSendSuccessfullyModal(true); // Show the confirmation code modal
+        } else {
+          throw new Error("Payment failed or requires additional steps.");
+        }
+      } else if (selectedPaymentMethod) {
+        // Confirm payment using saved card
+        const { error, paymentIntent } = await stripe.confirmCardPayment(clientSecret, {
+          payment_method: selectedPaymentMethod,
+        });
+
+        if (error) {
+          throw new Error(error.message);
+        }
+
+        if (paymentIntent && paymentIntent.status === "succeeded") {
+          toast.success("Payment successful! Confirmation Code");
+          setPaymentModal(false);
+          setCodeSendSuccessfullyModal(true); // Show the confirmation code modal
+        } else {
+          throw new Error("Payment failed or requires additional steps.");
+        }
+      } else {
+        throw new Error("Please select a payment method.");
       }
-    );
-
-    const result = response.data;
-
-    if (result) {
-      toast.success("Payment successful! Confirmation Code");
-      setPaymentModal(false);
-      setCodeSendSuccessfullyModal(true);
-    } else {
-      toast.error("Payment failed: " + result.message);
-    }
-
-  } catch (err) {
-    if (err.response && err.response.data && err.response.data.message) {
-      toast.error(err.response.data.message);
-      console.log(err.response.data.message);
-    } else if (err.message) {
+    } catch (err) {
+      setError(err.message);
       toast.error(err.message);
-    } else {
-      toast.error("Internal server error");
+    } finally {
+      setLoading(false);
     }
-  } finally {
-    setLoading(false);
-  }
-};
-
-
-  const cardElementOptions = {
-    style: {
-      base: {
-        fontSize: "16px",
-        color: "#424770",
-        "::placeholder": {
-          color: "#aab7c4",
-        },
-        fontFamily: "Roboto, Open Sans, Segoe UI, sans-serif",
-        fontSmoothing: "antialiased",
-        width: "100%",
-      },
-      invalid: {
-        color: "#9e2146",
-      },
-    },
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      <h2 style={{marginBottom:'10px', textTransform:'uppercase', color:'#606060'}}>Payment:</h2>
-      <div style={{marginBottom:'10px'}}>
-        <CardElement options={cardElementOptions} />
+      <h2 style={{ marginBottom: "10px", textTransform: "uppercase", color: "#606060" }}>Payment:</h2>
+
+      {/* Option to use saved cards */}
+      <div style={{ marginBottom: "10px" }}>
+        <h3>Select Payment Method</h3>
+        {paymentMethods.length > 0 ? (
+          <div>
+            {paymentMethods.map((paymentMethod) => (
+              <div key={paymentMethod.id}>
+                <input
+                  type="radio"
+                  id={paymentMethod.id}
+                  name="payment-method"
+                  value={paymentMethod.id}
+                  onChange={() => {
+                    setSelectedPaymentMethod(paymentMethod.id);
+                    setUseNewCard(false); // If a saved card is selected, don't show the PaymentElement
+                  }}
+                />
+                <label htmlFor={paymentMethod.id}>
+                  {paymentMethod.card.brand} ending in {paymentMethod.card.last4}
+                </label>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <p>No saved payment methods found.</p>
+        )}
       </div>
+
+      {/* Option to use a new card */}
+      <div>
+        <label>
+          <input
+            type="radio"
+            name="payment-method"
+            onChange={() => {
+              setUseNewCard(true);
+              setSelectedPaymentMethod(null); // Deselect any saved cards
+            }}
+          />
+          Use a new card
+        </label>
+      </div>
+
+      {/* Only show PaymentElement if user selects "Use a new card" */}
+      {useNewCard && (
+        <div style={{ marginBottom: "10px" }}>
+          <PaymentElement />
+        </div>
+      )}
+
       {error && <div style={{ color: "red" }}>{error}</div>}
+
       <button
         type="submit"
         className="modal-footer-next-btn"
-        disabled={!stripe || loading}
+        disabled={!stripe || loading || !(selectedPaymentMethod || useNewCard)}
       >
         {loading ? "Processing..." : "Next"}
       </button>
@@ -181,14 +167,63 @@ const handleSubmit = async (event) => {
   );
 };
 
-// Parent Component wrapping PaymentForm with <Elements>
 const App = ({ id, setPaymentModal, setCodeSendSuccessfullyModal }) => {
+  const [clientSecret, setClientSecret] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const agent_token = localStorage.getItem("use_access_token");
+
+  useEffect(() => {
+    const fetchClientSecret = async () => {
+      try {
+        if (!agent_token) {
+          toast.error("Please login to your account and try again");
+          return;
+        }
+
+        const response = await axios.post(
+          `${process.env.REACT_APP_API_URL}/printjob/initiate-payment/`,
+          { job_id: id },
+          {
+            headers: {
+              Authorization: `Bearer ${agent_token}`,
+            },
+          }
+        );
+
+        const { clientSecret } = response.data;
+        setClientSecret(clientSecret);
+      } catch (err) {
+        toast.error("Failed to initialize payment");
+        console.error(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchClientSecret();
+  }, [id, agent_token]);
+
+  if (loading) {
+    return <div>Loading payment details...</div>;
+  }
+
+  if (!clientSecret) {
+    return <div>Failed to initialize payment. Please try again.</div>;
+  }
+
   return (
-    <Elements stripe={stripePromise}>
+    <Elements stripe={stripePromise} options={{
+      clientSecret,
+      appearance: {
+        theme: "stripe",
+      },
+      paymentMethodOrder: ["google_pay", "apple_pay", "ideal", "card"], // Order of payment methods
+      locale: "auto", // Ensures region-specific methods show up
+    }}>
       <PaymentForm
-        id={id}
         setPaymentModal={setPaymentModal}
         setCodeSendSuccessfullyModal={setCodeSendSuccessfullyModal}
+        clientSecret={clientSecret}
       />
     </Elements>
   );
