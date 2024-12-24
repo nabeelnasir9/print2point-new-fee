@@ -15,21 +15,14 @@ import {
 } from "../../components";
 import Grid from "@mui/material/Grid";
 import "./index.css";
-import { MdChevronRight } from "react-icons/md";
 import FileUpload from "./upload";
 import Switch from "react-switch";
 import {
-  Upload,
   Close,
   SecurityUser,
   Verify,
   ArrowLeft,
   Pdf,
-  Download,
-  Search2,
-  Map,
-  // LocationWave,
-  // Copy,
   Location3,
   Success,
   File,
@@ -44,11 +37,9 @@ import { MdOutlineRadioButtonUnchecked } from "react-icons/md";
 import { MdOutlineRadioButtonChecked } from "react-icons/md";
 import axios from "axios";
 import FileRenderer from "../../components/Docs_rendered/FileRenderer";
-import PaymentModal from "../../components/PaymentModal";
 import PaymentForm from "../../components/PaymentForm";
 import IncrementDecrement from "../../components/IncrementDecrement/IncrementDecrement";
 import Btnloader from "../../components/Loader/Btnloader";
-const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
 const emailRjx =
   /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -361,10 +352,11 @@ const Home = () => {
           token,
         );
 
-        let agentType = AgentFlag ? "printAgent" : "customer"
+        let agentType = AgentFlag ? "printAgent" : "customer";
 
         localStorage.setItem(
-          AgentFlag ? "agent_loggedIn_user" : "loggedIn_user", JSON.stringify(signup_user.data[agentType]),
+          AgentFlag ? "agent_loggedIn_user" : "loggedIn_user",
+          JSON.stringify(signup_user.data[agentType]),
         );
         toast.success("Successfully Logged");
         setLoginEmail("");
@@ -530,7 +522,6 @@ const Home = () => {
         return setLoginModal(true);
       }
 
-
       let parsedLoggedInUser = JSON.parse(loggedIn_use);
 
       if (parsedLoggedInUser && !parsedLoggedInUser.location) {
@@ -548,7 +539,7 @@ const Home = () => {
 
       let availableAgents = (orders.data.availablePrintAgents || []).flat();
 
-      console.log(orders.data, "availableAgents")
+      console.log(orders.data, "availableAgents");
       if (!Array.isArray(availableAgents) || availableAgents.length === 0) {
         toast.error("No available agents found.");
         return;
@@ -596,9 +587,7 @@ const Home = () => {
     get_nearby_location();
   }, [searchingModal]);
 
-
   const applyCoupon = async () => {
-
     try {
       if (!agent_token) throw new Error("Please re-login and try again");
 
@@ -633,7 +622,6 @@ const Home = () => {
       }
     }
   };
-
 
   const selectPrintAgent = async () => {
     let loggedIn_use = localStorage.getItem("loggedIn_user");
@@ -992,18 +980,18 @@ const Home = () => {
                   <p className="home-input-title">Upload Files</p>
                   {files && files.length > 0
                     ? files.map((file) => (
-                      <p
-                        className=""
-                        style={{
-                          marginTop: "5px",
-                          marginBottom: "5px",
-                          marginRight: "20px",
-                          whiteSpace: "break-spaces",
-                        }}
-                      >
-                        {file.name}
-                      </p>
-                    ))
+                        <p
+                          className=""
+                          style={{
+                            marginTop: "5px",
+                            marginBottom: "5px",
+                            marginRight: "20px",
+                            whiteSpace: "break-spaces",
+                          }}
+                        >
+                          {file.name}
+                        </p>
+                      ))
                     : null}
 
                   <FileUpload setfiles={setfiles} files={files} />
@@ -1021,26 +1009,24 @@ const Home = () => {
                       Format Supports: Jpeg, PNG, Word and pdf
                     </p>
                   </label> */}
-                  <p className="home-input-title">Copy and Paste Text Below</p>
-                  <div className="home-textarea-main">
-                    <textarea
-                      placeholder="Enter text"
-                      value={printText}
-                      onChange={(val) => setPrintText(val.target.value)}
-                    ></textarea>
-                  </div>
 
-                  {/* <div className="color_container">
-                    <p>Color Print</p>
-            <Checkbox
-                {...label}
-                checked={isChecked}
-                onChange={handleChange}
-            />
-        </div> */}
-
-                  <div className="home-form-submit-btn">
-                    <button onClick={() => setCounter(true)}>Submit</button>
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "flex-end",
+                      width: "100%",
+                    }}
+                  >
+                    <div className="home-form-submit-btn">
+                      <button
+                        style={{ width: "100%" }}
+                        onClick={() => navigate("/generate-pdf")}
+                      >
+                        Generate PDF from Text
+                      </button>
+                      <button onClick={() => setCounter(true)}>Submit</button>
+                    </div>
                   </div>
                 </div>
               </Grid>
@@ -1681,7 +1667,6 @@ const Home = () => {
           );
         })}
 
-
         {/* Coupon */}
         <div className="coupon-main">
           <p className="coupon-heading">Have a coupon?</p>
@@ -1791,7 +1776,10 @@ const Home = () => {
         <div className="modal-price-list-3">
           <p className="modal-price-title">Total</p>
           <p className="modal-price-price">
-            $ {newTotalCost > 0 ? newTotalCost.toFixed(2) : Printed_file?.total_cost.toFixed(2)}
+            ${" "}
+            {newTotalCost > 0
+              ? newTotalCost.toFixed(2)
+              : Printed_file?.total_cost.toFixed(2)}
           </p>
         </div>
         {/* <div className="modal-price-list-3">
@@ -1875,7 +1863,6 @@ const Home = () => {
           </p>
         </div>
 
-
         {discountAmount > 0 && (
           <div className="modal-price-list-2">
             <p className="modal-price-title">Discount</p>
@@ -1886,10 +1873,12 @@ const Home = () => {
         <div className="modal-price-list-3">
           <p className="modal-price-title">Total</p>
           <p className="modal-price-price">
-            $ {newTotalCost > 0 ? newTotalCost.toFixed(2) : Printed_file?.total_cost.toFixed(2)}
+            ${" "}
+            {newTotalCost > 0
+              ? newTotalCost.toFixed(2)
+              : Printed_file?.total_cost.toFixed(2)}
           </p>
         </div>
-
 
         {/* <div className="modal-price-list-3">
           <p className="modal-price-title">Total</p>
@@ -1902,8 +1891,8 @@ const Home = () => {
           ********{" "}
           {loggedIn_use?.email &&
             loggedIn_use.email.split("@")[0].slice(-4) +
-            "@" +
-            loggedIn_use.email.split("@")[1]}
+              "@" +
+              loggedIn_use.email.split("@")[1]}
         </p>
         {/* <Button
           title=""
@@ -2014,7 +2003,7 @@ const Home = () => {
           className="confirm-email-modal-header"
           style={{ justifyContent: "flex-start" }}
         >
-          <button className="back-button" onClick={() => { }}>
+          <button className="back-button" onClick={() => {}}>
             <img src={ArrowLeft} />
             <p>Back</p>
           </button>

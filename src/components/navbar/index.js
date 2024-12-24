@@ -8,22 +8,16 @@ import "./index.css";
 
 import AvatarDemo from "../../components/Avatar/AvatarDemo";
 
-
-
 const Navbar = ({ onClickSignIn, onClickSignUp }) => {
-
-  const [user, setuser] = useState()
-
+  const [user, setuser] = useState();
 
   useEffect(() => {
     const handle_loggedin_user = () => {
       const user = JSON.parse(localStorage.getItem("loggedIn_user"));
       if (user) {
-        setuser(user)
-
+        setuser(user);
       } else {
-        setuser(null)
-
+        setuser(null);
       }
     };
 
@@ -34,20 +28,14 @@ const Navbar = ({ onClickSignIn, onClickSignUp }) => {
     };
   }, []);
 
-
-
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("loggedIn_user"));
     if (user) {
-      setuser(user)
-
+      setuser(user);
     }
-  }, [])
-
-
+  }, []);
 
   return (
-
     <>
       <Grid container spacing={0}>
         <Grid item xs={1} sm={1} md={1} lg={1} xl={1} />
@@ -57,7 +45,9 @@ const Navbar = ({ onClickSignIn, onClickSignUp }) => {
               <img src={Logo} alt="" />
             </button>
             <div>
-              <Link to="/support-ticket" className="navbar-explore">Support TIcket</Link>
+              <Link to="/support-ticket" className="navbar-explore">
+                Support TIcket
+              </Link>
               {/* <p className="navbar-explore navbar-location">Locations</p> */}
 
               {/*  <button className="navbar-search">
@@ -82,16 +72,7 @@ const Navbar = ({ onClickSignIn, onClickSignUp }) => {
         </Grid>
         <Grid item xs={1} sm={1} md={1} lg={1} xl={1} />
       </Grid>
-
-
-
     </>
-
-
-
   );
-
-
-
 };
 export default Navbar;

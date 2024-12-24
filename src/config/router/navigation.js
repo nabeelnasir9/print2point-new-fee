@@ -1,9 +1,17 @@
+/* eslint-disable react/jsx-pascal-case */
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-
-import { Home, Dashboard, Orders, DeliverDocuments, BusinessMode, VerifyMode, Bank_details, SupportTicketsForm, Setting } from "../../pages";
-import ProtectedRoute from "../../hooks/ProtectedRoute";
-
+import {
+  Home,
+  Dashboard,
+  Orders,
+  DeliverDocuments,
+  BusinessMode,
+  VerifyMode,
+  Bank_details,
+  SupportTicketsForm,
+  PDFGenerator,
+} from "../../pages";
 const RouterNavigation = () => {
   let token = localStorage.getItem("Agent_access_token");
   const isAuthenticated = token ? true : false
