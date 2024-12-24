@@ -18,5 +18,6 @@ export {
   VerifyMode,
   Bank_details,
   PDFGenerator,
+  Setting,
   SupportTicketsForm,
 };

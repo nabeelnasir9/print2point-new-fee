@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import {
   Home,
   Dashboard,
+  Setting,
   Orders,
   DeliverDocuments,
   BusinessMode,
@@ -12,10 +13,11 @@ import {
   SupportTicketsForm,
   PDFGenerator,
 } from "../../pages";
+import ProtectedRoute from "../../hooks/ProtectedRoute";
 const RouterNavigation = () => {
   let token = localStorage.getItem("Agent_access_token");
-  const isAuthenticated = token ? true : false
-  console.log(isAuthenticated, "isAuthenticated")
+  const isAuthenticated = token ? true : false;
+  console.log(isAuthenticated, "isAuthenticated");
 
   return (
     <BrowserRouter>
@@ -85,6 +87,7 @@ const RouterNavigation = () => {
             </ProtectedRoute>
           }
         />
+        <Route path="/generate-pdf" element={<PDFGenerator />} />
       </Routes>
     </BrowserRouter>
   );
