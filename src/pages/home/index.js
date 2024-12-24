@@ -61,9 +61,6 @@ const Home = () => {
     loggedIn_use = JSON.parse(user);
   }
 
-
-
-
   // log in
   const [loginModal, setLoginModal] = useState(false);
   const [loginType, setLoginType] = useState("Customer");
@@ -342,7 +339,8 @@ const Home = () => {
       let URL = AgentFlag ? "/auth/print-agent/login" : "/auth/customer/login";
 
       try {
-        let signup_user = await axios.post(`${process.env.REACT_APP_API_URL + URL}`,
+        let signup_user = await axios.post(
+          `${process.env.REACT_APP_API_URL + URL}`,
           { email: loginEmail, password: loginPassword },
         );
         let token = signup_user.data.token;
@@ -886,21 +884,15 @@ const Home = () => {
     }
   };
 
-
-  const protectedRouteHandler =()=>{
-    if(!agent_token){
-      setLoginModal(true)
+  const protectedRouteHandler = () => {
+    if (!agent_token) {
+      setLoginModal(true);
     }
-  }
-
+  };
 
   useEffect(() => {
-  
-    protectedRouteHandler()
-  }, [agent_token])
-  
-
-
+    protectedRouteHandler();
+  }, [agent_token]);
 
   return (
     <div>
@@ -910,7 +902,15 @@ const Home = () => {
       />
       <Grid container spacing={0}>
         <Grid item xs={1} sm={1} md={1} lg={1} xl={1} />
-        <Grid item xs={10} sm={10} md={10} lg={10} xl={10}>
+        <Grid
+          style={{ paddingTop: "70px" }}
+          item
+          xs={10}
+          sm={10}
+          md={10}
+          lg={10}
+          xl={10}
+        >
           <div className="home-box">
             <Grid container spacing={3}>
               <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
