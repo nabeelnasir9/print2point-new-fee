@@ -926,3 +926,33 @@ margin-top: 20px;
   width: 100%;
   margin-top: 20px;
 }
+
+
+/* 
+Coupon Input CSS Start
+*/
+.coupon-input-main{
+  border: 1px solid #a2a1a833;
+  height: 56px;
+  border-radius: 10px;
+  padding: 0px 10px;
+  position:relative;
+}
+
+.coupon-input-main input[type="text"] {
+  width: 90%;
+  height: 100%;
+  border-radius: 10px;
+  color: #16151c;
+  font-size: 16px;
+  font-weight: 300;
+}
+
+
+button.coupon-apply-btn {
+  position: absolute;
+  margin-top: 19px;
+}
+/* 
+Coupon Input CSS End
+*/

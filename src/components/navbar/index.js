@@ -49,16 +49,16 @@ const Navbar = ({ onClickSignIn, onClickSignUp }) => {
   return (
 
     <>
-    <Grid container spacing={0}>
-      <Grid item xs={1} sm={1} md={1} lg={1} xl={1} />
-      <Grid item xs={10} sm={10} md={10} lg={10} xl={10}>
-        <div className="navbar-container">
-          <button className="navbar-logo">
-            <img src={Logo} alt="" />
-          </button>
-          <div>
-            <Link to="/support-ticket" className="navbar-explore">Support TIcket</Link>
-            {/* <p className="navbar-explore navbar-location">Locations</p> */}
+      <Grid container spacing={0}>
+        <Grid item xs={1} sm={1} md={1} lg={1} xl={1} />
+        <Grid item xs={10} sm={10} md={10} lg={10} xl={10}>
+          <div className="navbar-container">
+            <button className="navbar-logo">
+              <img src={Logo} alt="" />
+            </button>
+            <div>
+              <Link to="/support-ticket" className="navbar-explore">Support TIcket</Link>
+              {/* <p className="navbar-explore navbar-location">Locations</p> */}
 
               {/*  <button className="navbar-search">
               <img src={Search} />

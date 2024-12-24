@@ -5,7 +5,7 @@ import { Google ,Apple} from "./../../svg";
 const SocialButton = ({ title }) => {
   return (
     <div>
-      <div className="or-main">
+      {/* <div className="or-main">
         <div />
         <p>or</p>
         <div />
@@ -17,7 +17,7 @@ const SocialButton = ({ title }) => {
       <Button  className="social-button">
         <img src={Apple} />
         <p>Continue with Apple</p>
-      </Button>
+      </Button> */}
     </div>
   );
 };

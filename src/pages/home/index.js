@@ -62,12 +62,16 @@ const Home = () => {
   const [files, setfiles] = useState([]);
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
   const nav = useNavigate();
+
   let agent_token = localStorage.getItem("use_access_token");
   let user = localStorage.getItem("loggedIn_user");
   let loggedIn_use;
   if (user) {
     loggedIn_use = JSON.parse(user);
   }
+
+
+
 
   // log in
   const [loginModal, setLoginModal] = useState(false);
@@ -165,6 +169,7 @@ const Home = () => {
   const [sendMoneyModal, setSendMoneyModal] = useState(false);
   const [currentLocationList, setcurrentLocationList] = useState([]);
   const [selectedAgent, setSelectedAgent] = useState(null);
+  const [couponCode, setCouponCode] = useState("");
   const [modal, setModal] = useState(false);
 
   const [cityName, setCityName] = useState("");
@@ -182,6 +187,8 @@ const Home = () => {
   const [Printed_file, setPrinted_file] = useState();
 
   const [totalCost, setTotalCost] = useState(Printed_file?.total_cost || 0);
+  const [discountAmount, setDiscountAmount] = useState(0);
+  const [newTotalCost, setNewTotalCost] = useState(0);
   const [count, setCount] = useState(1);
   const [isColor, setIsColor] = useState(false);
   const [Counter, setCounter] = useState(false);
@@ -357,14 +364,15 @@ const Home = () => {
         let agentType = AgentFlag ? "printAgent" : "customer"
 
         localStorage.setItem(
-          AgentFlag ? "agent_loggedIn_user" : "loggedIn_user",JSON.stringify(signup_user.data[agentType]),
+          AgentFlag ? "agent_loggedIn_user" : "loggedIn_user", JSON.stringify(signup_user.data[agentType]),
         );
         toast.success("Successfully Logged");
         setLoginEmail("");
         setLoginPassword("");
         setLoginModal(false);
         if (loginType === "Agent") {
-          navigate("/dashboard"); }
+          navigate("/dashboard");
+        }
         window.dispatchEvent(new Event("logged_user"));
         if (loginType !== "Agent" && !signup_user.data.customer.location) {
           setModal(true);
@@ -584,11 +592,48 @@ const Home = () => {
     }
   }, [searchVal, originalLocationList]);
 
-  console.log(currentLocationList, "current lisst");
-
   useEffect(() => {
     get_nearby_location();
   }, [searchingModal]);
+
+
+  const applyCoupon = async () => {
+
+    try {
+      if (!agent_token) throw new Error("Please re-login and try again");
+
+      let orders = await axios.post(
+        `${process.env.REACT_APP_API_URL}/printjob/apply-coupon`,
+        { coupon_code: couponCode, job_id: Printed_file?._id },
+        {
+          headers: {
+            Authorization: `Bearer ${agent_token}`,
+          },
+        },
+      );
+
+      console.log(orders.data, "orders");
+
+      setTotalCost(orders.data.total_cost);
+      setDiscountAmount(orders.data.discountAmount);
+      setNewTotalCost(orders.data.newTotalCost);
+      toast.success("Coupon applied successfully!");
+    } catch (error) {
+      if (
+        error.response &&
+        error.response.data &&
+        error.response.data.message
+      ) {
+        toast.error(error.response.data.message);
+        console.log(error.response.data.message);
+      } else if (error.message) {
+        toast.error(error.message);
+      } else {
+        toast.error("Internal server error");
+      }
+    }
+  };
+
 
   const selectPrintAgent = async () => {
     let loggedIn_use = localStorage.getItem("loggedIn_user");
@@ -854,6 +899,19 @@ const Home = () => {
   };
 
 
+  const protectedRouteHandler =()=>{
+    if(!agent_token){
+      setLoginModal(true)
+    }
+  }
+
+
+  useEffect(() => {
+  
+    protectedRouteHandler()
+  }, [agent_token])
+  
+
 
 
   return (
@@ -934,18 +992,18 @@ const Home = () => {
                   <p className="home-input-title">Upload Files</p>
                   {files && files.length > 0
                     ? files.map((file) => (
-                        <p
-                          className=""
-                          style={{
-                            marginTop: "5px",
-                            marginBottom: "5px",
-                            marginRight: "20px",
-                            whiteSpace: "break-spaces",
-                          }}
-                        >
-                          {file.name}
-                        </p>
-                      ))
+                      <p
+                        className=""
+                        style={{
+                          marginTop: "5px",
+                          marginBottom: "5px",
+                          marginRight: "20px",
+                          whiteSpace: "break-spaces",
+                        }}
+                      >
+                        {file.name}
+                      </p>
+                    ))
                     : null}
 
                   <FileUpload setfiles={setfiles} files={files} />
@@ -1623,6 +1681,28 @@ const Home = () => {
           );
         })}
 
+
+        {/* Coupon */}
+        <div className="coupon-main">
+          <p className="coupon-heading">Have a coupon?</p>
+          <div className="coupon-input-main">
+            <input
+              type="text"
+              placeholder="Enter coupon code"
+              value={couponCode}
+              onChange={(val) => setCouponCode(val.target.value)}
+            />
+            <button
+              className="coupon-apply-btn"
+              onClick={() => {
+                applyCoupon();
+              }}
+            >
+              Apply
+            </button>
+          </div>
+        </div>
+
         <Button
           title="Save"
           onClick={() => {
@@ -1701,10 +1781,23 @@ const Home = () => {
           </p>
         </div>
 
+        {discountAmount > 0 && (
+          <div className="modal-price-list-2">
+            <p className="modal-price-title">Discount</p>
+            <p className="modal-price-price">-${discountAmount.toFixed(2)}</p>
+          </div>
+        )}
+
         <div className="modal-price-list-3">
           <p className="modal-price-title">Total</p>
-          <p className="modal-price-price">${Printed_file?.total_cost}</p>
+          <p className="modal-price-price">
+            $ {newTotalCost > 0 ? newTotalCost.toFixed(2) : Printed_file?.total_cost.toFixed(2)}
+          </p>
         </div>
+        {/* <div className="modal-price-list-3">
+          <p className="modal-price-title">Total</p>
+          <p className="modal-price-price">${Printed_file?.total_cost}</p>
+        </div> */}
         <div style={{ marginTop: "15px" }}>
           <PaymentForm
             id={Printed_file?._id}
@@ -1782,10 +1875,26 @@ const Home = () => {
           </p>
         </div>
 
+
+        {discountAmount > 0 && (
+          <div className="modal-price-list-2">
+            <p className="modal-price-title">Discount</p>
+            <p className="modal-price-price">-${discountAmount.toFixed(2)}</p>
+          </div>
+        )}
+
         <div className="modal-price-list-3">
           <p className="modal-price-title">Total</p>
-          <p className="modal-price-price">${Printed_file?.total_cost}</p>
+          <p className="modal-price-price">
+            $ {newTotalCost > 0 ? newTotalCost.toFixed(2) : Printed_file?.total_cost.toFixed(2)}
+          </p>
         </div>
+
+
+        {/* <div className="modal-price-list-3">
+          <p className="modal-price-title">Total</p>
+          <p className="modal-price-price">${Printed_file?.total_cost}</p>
+        </div> */}
 
         <h1 className="successfully-send-heading">Code Sent Successfully!</h1>
         <p className="successfully-send-text">
@@ -1793,8 +1902,8 @@ const Home = () => {
           ********{" "}
           {loggedIn_use?.email &&
             loggedIn_use.email.split("@")[0].slice(-4) +
-              "@" +
-              loggedIn_use.email.split("@")[1]}
+            "@" +
+            loggedIn_use.email.split("@")[1]}
         </p>
         {/* <Button
           title=""
@@ -1905,7 +2014,7 @@ const Home = () => {
           className="confirm-email-modal-header"
           style={{ justifyContent: "flex-start" }}
         >
-          <button className="back-button" onClick={() => {}}>
+          <button className="back-button" onClick={() => { }}>
             <img src={ArrowLeft} />
             <p>Back</p>
           </button>

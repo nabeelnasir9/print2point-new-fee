@@ -45,7 +45,7 @@ const VerifyMode = () => {
           headers: {
             Authorization: `Bearer ${agent_token}`,
           },
-        }
+        },
       );
 
       console.log("OTP verification response:", response.data);
@@ -60,6 +60,7 @@ const VerifyMode = () => {
       }
 
       setotp_verificaion(true);
+      setOtp("");
     } catch (error) {
       if (
         error.response &&
@@ -124,16 +125,17 @@ const VerifyMode = () => {
           </Grid>
           <Grid item xs={1} sm={3} md={4} lg={4} xl={4} />
         </Grid>
-
       </div>
-
 
       {/* <Model open={model} onClose={()=>setmodel(false)}>
 <Print fileUrl ={fileUrl} ref={componentRef} />
 </Model>
  : null} */}
 
-      <div className="print-content" style={{ opacity: "0", objectFit: 'contain' }}>
+      <div
+        className="print-content"
+        style={{ opacity: "0", objectFit: "contain" }}
+      >
         {fileUrl ? <Print fileUrl={fileUrl} ref={componentRef} /> : null}
       </div>
     </SideMenu>

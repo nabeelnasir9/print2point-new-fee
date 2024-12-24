@@ -65,6 +65,8 @@ const Location = () => {
         }
       );
       toast.success("Information has been saved");
+      setformData(initialData)
+
     } catch (error) {
       if (error.response?.data?.message) {
         toast.error(error.response.data.message);

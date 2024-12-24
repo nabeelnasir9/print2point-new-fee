@@ -218,6 +218,8 @@ const SideMenuData = () => {
                 variant="text"
                 className={"side-menu-page"}
                 onClick={() => {
+                  localStorage.removeItem('Agent_access_token')
+                  localStorage.removeItem('agent_loggedIn_user')
                   navigate("/");
                 }}
               >
