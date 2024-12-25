@@ -1112,7 +1112,6 @@ const Home = () => {
           title={login_loading ? <Btnloader /> : "Login"}
           onClick={loginHandler}
         />
-        <SocialButton />
         <p className="modal-form-footer">
           Don’t have an account?{" "}
           <Link
@@ -1240,7 +1239,6 @@ const Home = () => {
           onClick={signUpHandler}
         />
 
-        <SocialButton />
         <p className="modal-form-footer">
           Already have an account?
           <Link

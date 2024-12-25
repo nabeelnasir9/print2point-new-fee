@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import axios from "axios";
 import { Input, Button } from "../../components";
 import Btnloader from "../../components/Loader/Btnloader";
-import './setting.css'
+import "./setting.css";
 
 const Location = () => {
   const initialData = {
@@ -24,12 +24,11 @@ const Location = () => {
   const [loading, setloading] = useState(false);
   let agent_token = localStorage.getItem("Agent_access_token");
 
-
   const onChangeHandler = (e) => {
     const { name, value } = e.target;
 
     if (name.includes("coordinates")) {
-      const field = name.split(".")[1]; 
+      const field = name.split(".")[1];
       setformData((prev) => ({
         ...prev,
         location: {
@@ -56,17 +55,17 @@ const Location = () => {
     setloading(true);
 
     try {
-      const response = await axios.post(
+      await axios.post(
         `${process.env.REACT_APP_API_URL}/print-agent/add-location`,
-        formData, {
+        formData,
+        {
           headers: {
             Authorization: `Bearer ${agent_token}`,
           },
-        }
+        },
       );
       toast.success("Information has been saved");
-      setformData(initialData)
-
+      setformData(initialData);
     } catch (error) {
       if (error.response?.data?.message) {
         toast.error(error.response.data.message);
@@ -77,16 +76,13 @@ const Location = () => {
       setloading(false);
     }
   };
-
-  console.log(formData, "formData");
-
   return (
     <SideMenu>
       <div className="page-header">
         <div />
         <p>Setting</p>
       </div>
-      <form  onSubmit={handlesubmit}>
+      <form onSubmit={handlesubmit}>
         <div className="Setting_Container">
           <Input
             password={false}

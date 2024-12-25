@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 
-import { SideMenu, LineChart, ActivityChart } from "../../components";
+import { SideMenu, ActivityChart } from "../../components";
 import Grid from "@mui/material/Grid";
 import "./index.css";
-import { Graph } from "./../../svg";
 import { toast } from "react-toastify";
 import axios from "axios";
 import Loader from "../../components/Loader/Loader";
@@ -23,7 +22,7 @@ const Dashboard = () => {
           headers: {
             Authorization: `Bearer ${agent_token}`,
           },
-        }
+        },
       );
       console.log("orders", orders["business_name"]);
       console.log("orders", orders.business_name);
@@ -49,6 +48,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     get_Customers();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

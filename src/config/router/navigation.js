@@ -17,7 +17,6 @@ import ProtectedRoute from "../../hooks/ProtectedRoute";
 const RouterNavigation = () => {
   let token = localStorage.getItem("Agent_access_token");
   const isAuthenticated = token ? true : false;
-  console.log(isAuthenticated, "isAuthenticated");
 
   return (
     <BrowserRouter>

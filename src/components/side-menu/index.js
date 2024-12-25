@@ -16,8 +16,6 @@ import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 import {
   Logo,
-  Search2,
-  Notification,
   Dashboard,
   Orders,
   DeliverDocuments,
@@ -25,7 +23,7 @@ import {
   Calendar,
   VerifyJob,
   bank_details,
-  user_setting
+  user_setting,
 } from "./../../svg";
 import { toast } from "react-toastify";
 
@@ -53,7 +51,7 @@ export const SideMenu = (props) => {
           headers: {
             Authorization: `Bearer ${agent_token}`,
           },
-        }
+        },
       );
 
       toast.success(otp.data.message);
@@ -80,7 +78,6 @@ export const SideMenu = (props) => {
     }
   };
 
-
   useEffect(() => {
     toggler();
   }, [props.otp_verificaion]);
@@ -89,11 +86,9 @@ export const SideMenu = (props) => {
     setBusinessModeOpen(!businessModeOpen);
   };
 
-  
-
   return (
     <>
-      <div >
+      <div>
         <Grid container>
           <Grid item xs={12} md={2}>
             <SideMenuData />
@@ -178,7 +173,6 @@ export const SideMenu = (props) => {
                                 </Button>
                               </li>
 
-
                               <li className="side-menu-list-item">
                                 <Button
                                   variant="text"
@@ -209,7 +203,11 @@ export const SideMenu = (props) => {
                                     navigate("/bank_details");
                                   }}
                                 >
-                                  <img src={bank_details} alt=""   style={{height:"25px", width: "25px"}}/>
+                                  <img
+                                    src={bank_details}
+                                    alt=""
+                                    style={{ height: "25px", width: "25px" }}
+                                  />
                                   <span className="side-menu-page-title">
                                     Bank Details
                                   </span>
@@ -228,14 +226,16 @@ export const SideMenu = (props) => {
                                     navigate("/setting");
                                   }}
                                 >
-                                  <img src={user_setting} alt=""   style={{height:"25px", width: "25px"}}/>
+                                  <img
+                                    src={user_setting}
+                                    alt=""
+                                    style={{ height: "25px", width: "25px" }}
+                                  />
                                   <span className="side-menu-page-title">
                                     Setting
-                                    </span>
+                                  </span>
                                 </Button>
                               </li>
-
-
 
                               {/* Business Mode Dropdown */}
                               <li className="side-menu-list-item">
@@ -346,7 +346,6 @@ export const SideMenu = (props) => {
                       </Button> */}
                     </div>
                   </div>
-
                 </div>
               </div>
               <div className={"side-menu-children-data"}>{props.children}</div>

@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./side-menu-data.css";
 import { useTheme } from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery";
@@ -15,11 +15,10 @@ import {
   Orders,
   DeliverDocuments,
   BusinessMode,
-  Notification,
   Calendar,
   VerifyJob,
   bank_details,
-  user_setting
+  user_setting,
 } from "./../../svg";
 
 const SideMenuData = () => {
@@ -119,13 +118,15 @@ const SideMenuData = () => {
                       navigate("/bank_details");
                     }}
                   >
-                    <img src={bank_details} alt="Deliver Documents" style={{ height: "25px", width: "25px" }} />
-                    <span className="side-menu-page-title">
-                      Bank Details                    </span>
+                    <img
+                      src={bank_details}
+                      alt="Deliver Documents"
+                      style={{ height: "25px", width: "25px" }}
+                    />
+                    <span className="side-menu-page-title">Bank Details </span>
                   </Button>
                 </li>
 
-                
                 <li className="side-menu-list-item">
                   <Button
                     variant="text"
@@ -138,9 +139,12 @@ const SideMenuData = () => {
                       navigate("/setting");
                     }}
                   >
-                    <img src={user_setting} alt="Deliver Documents" style={{ height: "25px", width: "25px" }} />
-                    <span className="side-menu-page-title">
-                    Setting                   </span>
+                    <img
+                      src={user_setting}
+                      alt="Deliver Documents"
+                      style={{ height: "25px", width: "25px" }}
+                    />
+                    <span className="side-menu-page-title">Setting </span>
                   </Button>
                 </li>
 
@@ -150,7 +154,7 @@ const SideMenuData = () => {
                     variant="text"
                     className={
                       CurrentPagePath === "/businessmode" ||
-                        CurrentPagePath === "/verifyjob"
+                      CurrentPagePath === "/verifyjob"
                         ? "side-menu-active-page"
                         : "side-menu-page"
                     }
@@ -218,8 +222,8 @@ const SideMenuData = () => {
                 variant="text"
                 className={"side-menu-page"}
                 onClick={() => {
-                  localStorage.removeItem('Agent_access_token')
-                  localStorage.removeItem('agent_loggedIn_user')
+                  localStorage.removeItem("Agent_access_token");
+                  localStorage.removeItem("agent_loggedIn_user");
                   navigate("/");
                 }}
               >
