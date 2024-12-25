@@ -57,7 +57,7 @@ textarea {
   padding: 1rem;
   border: 1px solid #e0e0e0;
   border-color: #f7801a;
-  border-radius: 4px;
+  border-radius: 10px;
   font-family: monospace;
   font-size: 0.875rem;
   resize: none;
@@ -79,10 +79,11 @@ textarea::selection {
   width: 210mm;
   min-height: 297mm;
   margin: 0 auto;
+  border: 1px solid #e67018;
+  border-radius: 10px;
   padding: 2rem;
-  background: #f5f5f5;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  line-height: 1.8;
+  line-height: 1.9;
 }
 
 #markdown-preview code {
