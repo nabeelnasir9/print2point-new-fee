@@ -11,7 +11,6 @@ import { SideMenu } from "../../components";
 import Button from "@mui/material/Button";
 import "./index.css";
 import { FaCheck } from "react-icons/fa";
-import { Edit, Delete } from "./../../svg";
 import axios from "axios";
 import { toast } from "react-toastify";
 import Loader from "../../components/Loader/Loader";
@@ -19,7 +18,7 @@ import Loader from "../../components/Loader/Loader";
 const columns = [
   { id: "selected", label: "", minWidth: 30 },
   { id: "CustomerName", label: "Customer Name", minWidth: 120 },
-  { id: "JobTitle", label: "Job Title", minWidth: 120 },  // New column
+  { id: "JobTitle", label: "Job Title", minWidth: 120 }, // New column
   { id: "Copies", label: "No. of Copies", minWidth: 120 }, // New column
   { id: "IsColor", label: "Color Print", minWidth: 120 }, // New column
   {
@@ -62,7 +61,7 @@ const Orders = () => {
     setPage(0);
   };
 
-  const handleChangePage = (event, newPage) => {
+  const handleChangePage = (_event, newPage) => {
     setPage(newPage);
   };
 
@@ -76,7 +75,7 @@ const Orders = () => {
           headers: {
             Authorization: `Bearer ${agent_token}`,
           },
-        }
+        },
       );
 
       const dynamicOrders = orders.data.printJobs.map((job) => ({
@@ -94,7 +93,7 @@ const Orders = () => {
         createdDate: new Date(job.created_at).toLocaleDateString(),
       }));
 
-      setOrdersList((prevOrders) => [...dynamicOrders]);
+      setOrdersList((_prevOrders) => [...dynamicOrders]);
     } catch (error) {
       if (
         error.response &&
@@ -115,11 +114,12 @@ const Orders = () => {
 
   useEffect(() => {
     get_Orders();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleOrderClick = () => {
     setOrdersList((prevOrdersList) =>
-      prevOrdersList.map((order) => ({ ...order, isSelected: !allSelected }))
+      prevOrdersList.map((order) => ({ ...order, isSelected: !allSelected })),
     );
     setAllSelected((prev) => !prev);
   };
@@ -290,7 +290,7 @@ const Orders = () => {
             style={{
               backgroundColor: "#fff",
               color: "#F7801A",
-              fontFamily: "Poppins",
+              fontFamily: "Plus Jakarta Sans",
             }}
           />
         )}
@@ -300,3 +300,4 @@ const Orders = () => {
 };
 
 export default Orders;
+

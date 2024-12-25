@@ -10,7 +10,6 @@ import TableRow from "@mui/material/TableRow";
 import { SideMenu } from "../../components";
 import Button from "@mui/material/Button";
 import { FaCheck } from "react-icons/fa";
-import { Edit, Delete } from "./../../svg";
 import { toast } from "react-toastify";
 import axios from "axios";
 import Loader from "../../components/Loader/Loader";
@@ -59,249 +58,245 @@ const columns = [
   // },
 ];
 
+//   [
+//   {
+//     isSelected: false,
+//     customerName: "John Doe",
+//     orderNumber: "#12543",
+//     fileType: "PDF",
+//     price: 200,
+//     status: "Arrival",
+//     createdDate: "21/07/2024",
+//     outForDeliveryDate: "---",
+//     deliveredDate: "---",
+//   },
+//   {
+//     isSelected: false,
+//     customerName: "John Doe",
+//     orderNumber: "#12543",
+//     fileType: "Excel",
+//     price: 150,
+//     status: "Delivered",
+//     createdDate: "21/07/2024",
+//     outForDeliveryDate: "21/07/2024",
+//     deliveredDate: "21/07/2024",
+//   },
+//   {
+//     isSelected: false,
+//     customerName: "John Doe",
+//     orderNumber: "#12543",
+//     fileType: "JPEG",
+//     price: 400,
+//     status: "Out for delivery",
+//     createdDate: "21/07/2024",
+//     outForDeliveryDate: "21/07/2024",
+//     deliveredDate: "21/07/2024",
+//   },
+//   {
+//     isSelected: false,
+//     customerName: "John Doe",
+//     orderNumber: "#12543",
+//     fileType: "PDF",
+//     price: 200,
+//     status: "Arrival",
+//     createdDate: "21/07/2024",
+//     outForDeliveryDate: "---",
+//     deliveredDate: "---",
+//   },
+//   {
+//     isSelected: false,
+//     customerName: "John Doe",
+//     orderNumber: "#12543",
+//     fileType: "Excel",
+//     price: 150,
+//     status: "Delivered",
+//     createdDate: "21/07/2024",
+//     outForDeliveryDate: "21/07/2024",
+//     deliveredDate: "21/07/2024",
+//   },
+//   {
+//     isSelected: false,
+//     customerName: "John Doe",
+//     orderNumber: "#12543",
+//     fileType: "JPEG",
+//     price: 400,
+//     status: "Out for delivery",
+//     createdDate: "21/07/2024",
+//     outForDeliveryDate: "21/07/2024",
+//     deliveredDate: "21/07/2024",
+//   },
+//   {
+//     isSelected: false,
+//     customerName: "John Doe",
+//     orderNumber: "#12543",
+//     fileType: "PDF",
+//     price: 200,
+//     status: "Arrival",
+//     createdDate: "21/07/2024",
+//     outForDeliveryDate: "---",
+//     deliveredDate: "---",
+//   },
+//   {
+//     isSelected: false,
+//     customerName: "John Doe",
+//     orderNumber: "#12543",
+//     fileType: "Excel",
+//     price: 150,
+//     status: "Delivered",
+//     createdDate: "21/07/2024",
+//     outForDeliveryDate: "21/07/2024",
+//     deliveredDate: "21/07/2024",
+//   },
+//   {
+//     isSelected: false,
+//     customerName: "John Doe",
+//     orderNumber: "#12543",
+//     fileType: "JPEG",
+//     price: 400,
+//     status: "Out for delivery",
+//     createdDate: "21/07/2024",
+//     outForDeliveryDate: "21/07/2024",
+//     deliveredDate: "21/07/2024",
+//   },
+//   {
+//     isSelected: false,
+//     customerName: "John Doe",
+//     orderNumber: "#12543",
+//     fileType: "PDF",
+//     price: 200,
+//     status: "Arrival",
+//     createdDate: "21/07/2024",
+//     outForDeliveryDate: "---",
+//     deliveredDate: "---",
+//   },
+//   {
+//     isSelected: false,
+//     customerName: "John Doe",
+//     orderNumber: "#12543",
+//     fileType: "Excel",
+//     price: 150,
+//     status: "Delivered",
+//     createdDate: "21/07/2024",
+//     outForDeliveryDate: "21/07/2024",
+//     deliveredDate: "21/07/2024",
+//   },
+//   {
+//     isSelected: false,
+//     customerName: "John Doe",
+//     orderNumber: "#12543",
+//     fileType: "JPEG",
+//     price: 400,
+//     status: "Out for delivery",
+//     createdDate: "21/07/2024",
+//     outForDeliveryDate: "21/07/2024",
+//     deliveredDate: "21/07/2024",
+//   },
 
-
-  //   [
-  //   {
-  //     isSelected: false,
-  //     customerName: "John Doe",
-  //     orderNumber: "#12543",
-  //     fileType: "PDF",
-  //     price: 200,
-  //     status: "Arrival",
-  //     createdDate: "21/07/2024",
-  //     outForDeliveryDate: "---",
-  //     deliveredDate: "---",
-  //   },
-  //   {
-  //     isSelected: false,
-  //     customerName: "John Doe",
-  //     orderNumber: "#12543",
-  //     fileType: "Excel",
-  //     price: 150,
-  //     status: "Delivered",
-  //     createdDate: "21/07/2024",
-  //     outForDeliveryDate: "21/07/2024",
-  //     deliveredDate: "21/07/2024",
-  //   },
-  //   {
-  //     isSelected: false,
-  //     customerName: "John Doe",
-  //     orderNumber: "#12543",
-  //     fileType: "JPEG",
-  //     price: 400,
-  //     status: "Out for delivery",
-  //     createdDate: "21/07/2024",
-  //     outForDeliveryDate: "21/07/2024",
-  //     deliveredDate: "21/07/2024",
-  //   },
-  //   {
-  //     isSelected: false,
-  //     customerName: "John Doe",
-  //     orderNumber: "#12543",
-  //     fileType: "PDF",
-  //     price: 200,
-  //     status: "Arrival",
-  //     createdDate: "21/07/2024",
-  //     outForDeliveryDate: "---",
-  //     deliveredDate: "---",
-  //   },
-  //   {
-  //     isSelected: false,
-  //     customerName: "John Doe",
-  //     orderNumber: "#12543",
-  //     fileType: "Excel",
-  //     price: 150,
-  //     status: "Delivered",
-  //     createdDate: "21/07/2024",
-  //     outForDeliveryDate: "21/07/2024",
-  //     deliveredDate: "21/07/2024",
-  //   },
-  //   {
-  //     isSelected: false,
-  //     customerName: "John Doe",
-  //     orderNumber: "#12543",
-  //     fileType: "JPEG",
-  //     price: 400,
-  //     status: "Out for delivery",
-  //     createdDate: "21/07/2024",
-  //     outForDeliveryDate: "21/07/2024",
-  //     deliveredDate: "21/07/2024",
-  //   },
-  //   {
-  //     isSelected: false,
-  //     customerName: "John Doe",
-  //     orderNumber: "#12543",
-  //     fileType: "PDF",
-  //     price: 200,
-  //     status: "Arrival",
-  //     createdDate: "21/07/2024",
-  //     outForDeliveryDate: "---",
-  //     deliveredDate: "---",
-  //   },
-  //   {
-  //     isSelected: false,
-  //     customerName: "John Doe",
-  //     orderNumber: "#12543",
-  //     fileType: "Excel",
-  //     price: 150,
-  //     status: "Delivered",
-  //     createdDate: "21/07/2024",
-  //     outForDeliveryDate: "21/07/2024",
-  //     deliveredDate: "21/07/2024",
-  //   },
-  //   {
-  //     isSelected: false,
-  //     customerName: "John Doe",
-  //     orderNumber: "#12543",
-  //     fileType: "JPEG",
-  //     price: 400,
-  //     status: "Out for delivery",
-  //     createdDate: "21/07/2024",
-  //     outForDeliveryDate: "21/07/2024",
-  //     deliveredDate: "21/07/2024",
-  //   },
-  //   {
-  //     isSelected: false,
-  //     customerName: "John Doe",
-  //     orderNumber: "#12543",
-  //     fileType: "PDF",
-  //     price: 200,
-  //     status: "Arrival",
-  //     createdDate: "21/07/2024",
-  //     outForDeliveryDate: "---",
-  //     deliveredDate: "---",
-  //   },
-  //   {
-  //     isSelected: false,
-  //     customerName: "John Doe",
-  //     orderNumber: "#12543",
-  //     fileType: "Excel",
-  //     price: 150,
-  //     status: "Delivered",
-  //     createdDate: "21/07/2024",
-  //     outForDeliveryDate: "21/07/2024",
-  //     deliveredDate: "21/07/2024",
-  //   },
-  //   {
-  //     isSelected: false,
-  //     customerName: "John Doe",
-  //     orderNumber: "#12543",
-  //     fileType: "JPEG",
-  //     price: 400,
-  //     status: "Out for delivery",
-  //     createdDate: "21/07/2024",
-  //     outForDeliveryDate: "21/07/2024",
-  //     deliveredDate: "21/07/2024",
-  //   },
-
-  //   {
-  //     isSelected: false,
-  //     customerName: "John Doe",
-  //     orderNumber: "#12543",
-  //     fileType: "PDF",
-  //     price: 200,
-  //     status: "Arrival",
-  //     createdDate: "21/07/2024",
-  //     outForDeliveryDate: "---",
-  //     deliveredDate: "---",
-  //   },
-  //   {
-  //     isSelected: false,
-  //     customerName: "John Doe",
-  //     orderNumber: "#12543",
-  //     fileType: "Excel",
-  //     price: 150,
-  //     status: "Delivered",
-  //     createdDate: "21/07/2024",
-  //     outForDeliveryDate: "21/07/2024",
-  //     deliveredDate: "21/07/2024",
-  //   },
-  //   {
-  //     isSelected: false,
-  //     customerName: "John Doe",
-  //     orderNumber: "#12543",
-  //     fileType: "JPEG",
-  //     price: 400,
-  //     status: "Out for delivery",
-  //     createdDate: "21/07/2024",
-  //     outForDeliveryDate: "21/07/2024",
-  //     deliveredDate: "21/07/2024",
-  //   },
-  //   {
-  //     isSelected: false,
-  //     customerName: "John Doe",
-  //     orderNumber: "#12543",
-  //     fileType: "PDF",
-  //     price: 200,
-  //     status: "Arrival",
-  //     createdDate: "21/07/2024",
-  //     outForDeliveryDate: "---",
-  //     deliveredDate: "---",
-  //   },
-  //   {
-  //     isSelected: false,
-  //     customerName: "John Doe",
-  //     orderNumber: "#12543",
-  //     fileType: "Excel",
-  //     price: 150,
-  //     status: "Delivered",
-  //     createdDate: "21/07/2024",
-  //     outForDeliveryDate: "21/07/2024",
-  //     deliveredDate: "21/07/2024",
-  //   },
-  //   {
-  //     isSelected: false,
-  //     customerName: "John Doe",
-  //     orderNumber: "#12543",
-  //     fileType: "JPEG",
-  //     price: 400,
-  //     status: "Out for delivery",
-  //     createdDate: "21/07/2024",
-  //     outForDeliveryDate: "21/07/2024",
-  //     deliveredDate: "21/07/2024",
-  //   },
-  //   {
-  //     isSelected: false,
-  //     customerName: "John Doe",
-  //     orderNumber: "#12543",
-  //     fileType: "PDF",
-  //     price: 200,
-  //     status: "Arrival",
-  //     createdDate: "21/07/2024",
-  //     outForDeliveryDate: "---",
-  //     deliveredDate: "---",
-  //   },
-  //   {
-  //     isSelected: false,
-  //     customerName: "John Doe",
-  //     orderNumber: "#12543",
-  //     fileType: "Excel",
-  //     price: 150,
-  //     status: "Delivered",
-  //     createdDate: "21/07/2024",
-  //     outForDeliveryDate: "21/07/2024",
-  //     deliveredDate: "21/07/2024",
-  //   },
-  //   {
-  //     isSelected: false,
-  //     customerName: "John Doe",
-  //     orderNumber: "#12543",
-  //     fileType: "JPEG",
-  //     price: 400,
-  //     status: "Out for delivery",
-  //     createdDate: "21/07/2024",
-  //     outForDeliveryDate: "21/07/2024",
-  //     deliveredDate: "21/07/2024",
-  //   },
-  // ]
-
+//   {
+//     isSelected: false,
+//     customerName: "John Doe",
+//     orderNumber: "#12543",
+//     fileType: "PDF",
+//     price: 200,
+//     status: "Arrival",
+//     createdDate: "21/07/2024",
+//     outForDeliveryDate: "---",
+//     deliveredDate: "---",
+//   },
+//   {
+//     isSelected: false,
+//     customerName: "John Doe",
+//     orderNumber: "#12543",
+//     fileType: "Excel",
+//     price: 150,
+//     status: "Delivered",
+//     createdDate: "21/07/2024",
+//     outForDeliveryDate: "21/07/2024",
+//     deliveredDate: "21/07/2024",
+//   },
+//   {
+//     isSelected: false,
+//     customerName: "John Doe",
+//     orderNumber: "#12543",
+//     fileType: "JPEG",
+//     price: 400,
+//     status: "Out for delivery",
+//     createdDate: "21/07/2024",
+//     outForDeliveryDate: "21/07/2024",
+//     deliveredDate: "21/07/2024",
+//   },
+//   {
+//     isSelected: false,
+//     customerName: "John Doe",
+//     orderNumber: "#12543",
+//     fileType: "PDF",
+//     price: 200,
+//     status: "Arrival",
+//     createdDate: "21/07/2024",
+//     outForDeliveryDate: "---",
+//     deliveredDate: "---",
+//   },
+//   {
+//     isSelected: false,
+//     customerName: "John Doe",
+//     orderNumber: "#12543",
+//     fileType: "Excel",
+//     price: 150,
+//     status: "Delivered",
+//     createdDate: "21/07/2024",
+//     outForDeliveryDate: "21/07/2024",
+//     deliveredDate: "21/07/2024",
+//   },
+//   {
+//     isSelected: false,
+//     customerName: "John Doe",
+//     orderNumber: "#12543",
+//     fileType: "JPEG",
+//     price: 400,
+//     status: "Out for delivery",
+//     createdDate: "21/07/2024",
+//     outForDeliveryDate: "21/07/2024",
+//     deliveredDate: "21/07/2024",
+//   },
+//   {
+//     isSelected: false,
+//     customerName: "John Doe",
+//     orderNumber: "#12543",
+//     fileType: "PDF",
+//     price: 200,
+//     status: "Arrival",
+//     createdDate: "21/07/2024",
+//     outForDeliveryDate: "---",
+//     deliveredDate: "---",
+//   },
+//   {
+//     isSelected: false,
+//     customerName: "John Doe",
+//     orderNumber: "#12543",
+//     fileType: "Excel",
+//     price: 150,
+//     status: "Delivered",
+//     createdDate: "21/07/2024",
+//     outForDeliveryDate: "21/07/2024",
+//     deliveredDate: "21/07/2024",
+//   },
+//   {
+//     isSelected: false,
+//     customerName: "John Doe",
+//     orderNumber: "#12543",
+//     fileType: "JPEG",
+//     price: 400,
+//     status: "Out for delivery",
+//     createdDate: "21/07/2024",
+//     outForDeliveryDate: "21/07/2024",
+//     deliveredDate: "21/07/2024",
+//   },
+// ]
 
 const DeliverDocuments = () => {
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
-  let agent_token = localStorage.getItem("Agent_access_token")
+  let agent_token = localStorage.getItem("Agent_access_token");
   const [loading, setloading] = useState(false);
-
 
   const [page, setPage] = React.useState(0);
   const handleChangeRowsPerPage = (event) => {
@@ -318,7 +313,7 @@ const DeliverDocuments = () => {
   const handleOrderClick = () => {
     // Toggle the selection state for all orders
     setOrdersList((prevOrdersList) =>
-      prevOrdersList.map((order) => ({ ...order, isSelected: !allSelected }))
+      prevOrdersList.map((order) => ({ ...order, isSelected: !allSelected })),
     );
     // Update the allSelected state
     setAllSelected((prev) => !prev);
@@ -326,61 +321,52 @@ const DeliverDocuments = () => {
 
   const get_Customers = async () => {
     try {
-
-      if (!agent_token) throw new Error("Please re-login and try again")
-      setloading(true)
-      let orders = await axios.get(`${process.env.REACT_APP_API_URL}/print-agent/all-customers`, {
-        headers: {
-          Authorization: `Bearer ${agent_token}`
-        }
-      });
-
-
-
-      const dynamicOrders = orders.data.customers.map((job) => (
+      if (!agent_token) throw new Error("Please re-login and try again");
+      setloading(true);
+      let orders = await axios.get(
+        `${process.env.REACT_APP_API_URL}/print-agent/all-customers`,
         {
+          headers: {
+            Authorization: `Bearer ${agent_token}`,
+          },
+        },
+      );
+
+      const dynamicOrders = orders.data.customers.map((job) => ({
         isSelected: false,
         // id: job._id,
         customerName: job.full_name,
         OrderNumber: job._id,
         CreatedDate: new Date().toLocaleDateString(),
-         OutforDeliveryDate: "",
+        OutforDeliveryDate: "",
         // ...job,
-      }
-    ));
+      }));
 
       setOrdersList((prevOrders) => [...dynamicOrders]);
-
-
-
     } catch (error) {
-      if (error.response && error.response.data && error.response.data.message) {
+      if (
+        error.response &&
+        error.response.data &&
+        error.response.data.message
+      ) {
         toast.error(error.response.data.message);
-        console.log(error.response.data.message)
-      }
-
-      else if (error.message) {
+        console.log(error.response.data.message);
+      } else if (error.message) {
         toast.error(error.message);
-      }
-      else {
+      } else {
         toast.error("Internal server error");
       }
+    } finally {
+      setloading(false);
     }
-    finally {
-      setloading(false)
-
-    }
-  }
-
-
-
-
+  };
 
   useEffect(() => {
-    get_Customers()
-}, [])
+    get_Customers();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-console.log(ordersList, "ordersList")
+  console.log(ordersList, "ordersList");
   return (
     <SideMenu>
       <div className="page-header">
@@ -427,111 +413,111 @@ console.log(ordersList, "ordersList")
               </TableRow>
             </TableHead>
 
-
             <TableBody style={{ backgroundColor: "#fff" }}>
-              {
-               !ordersList.length > 0 && !loading ? <div className="not-job"><p>No Deliver documents</p></div> :
-
-               loading ? <Loader /> :
-              ordersList
-                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                .map((row, i) => {
-                  return (
-                    <TableRow hover role="checkbox" tabIndex={-1} key={i}>
-                      <TableCell>
-                        <Button
-                          className="order-table-checkbox"
-                          style={{
-                            backgroundColor: row.isSelected
-                              ? "#F7801A"
-                              : "#fff",
-                          }}
-                          onClick={() => {
-                            ordersList[i].isSelected =
-                              !ordersList[i].isSelected;
-                            setOrdersList([...ordersList]);
-                          }}
-                        >
-                          {row.isSelected && (
-                            <FaCheck
-                              style={{
-                                color: "#fff",
-                                height: "10px",
-                                width: "10px",
-                              }}
-                            />
-                          )}
-                        </Button>
-                      </TableCell>
-                      <TableCell>
-                        <p className="order-table-text">{row.customerName}</p>
-                      </TableCell>
-                      <TableCell>
-                        <p className="order-table-text">{row.OrderNumber}</p>
-                      </TableCell>
-
-                      <TableCell>
-                        <p className="order-table-text">{row.CreatedDate}</p>
-                      </TableCell>
-
-
-                      <TableCell>
-                        {row.status === "Delivered" ? (
-                          <p className="order-table-status-delivered">
-                            {row.status}
-                          </p>
-                        ) : (
-                          <select
-                            onChange={(val) => {
-                              ordersList[i].status = val.target.value;
+              {!ordersList.length > 0 && !loading ? (
+                <div className="not-job">
+                  <p>No Deliver documents</p>
+                </div>
+              ) : loading ? (
+                <Loader />
+              ) : (
+                ordersList
+                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                  .map((row, i) => {
+                    return (
+                      <TableRow hover role="checkbox" tabIndex={-1} key={i}>
+                        <TableCell>
+                          <Button
+                            className="order-table-checkbox"
+                            style={{
+                              backgroundColor: row.isSelected
+                                ? "#F7801A"
+                                : "#fff",
+                            }}
+                            onClick={() => {
+                              ordersList[i].isSelected =
+                                !ordersList[i].isSelected;
                               setOrdersList([...ordersList]);
                             }}
-                            className="order-table-dropdown"
                           >
-                            <option
-                              value="Arrival"
-                              selected={row.status === "Arrival" ? true : false}
+                            {row.isSelected && (
+                              <FaCheck
+                                style={{
+                                  color: "#fff",
+                                  height: "10px",
+                                  width: "10px",
+                                }}
+                              />
+                            )}
+                          </Button>
+                        </TableCell>
+                        <TableCell>
+                          <p className="order-table-text">{row.customerName}</p>
+                        </TableCell>
+                        <TableCell>
+                          <p className="order-table-text">{row.OrderNumber}</p>
+                        </TableCell>
+
+                        <TableCell>
+                          <p className="order-table-text">{row.CreatedDate}</p>
+                        </TableCell>
+
+                        <TableCell>
+                          {row.status === "Delivered" ? (
+                            <p className="order-table-status-delivered">
+                              {row.status}
+                            </p>
+                          ) : (
+                            <select
+                              onChange={(val) => {
+                                ordersList[i].status = val.target.value;
+                                setOrdersList([...ordersList]);
+                              }}
+                              className="order-table-dropdown"
                             >
-                              Arrival
-                            </option>
-                            <option
-                              value="Delivered"
-                              selected={
-                                row.status === "Delivered" ? true : false
-                              }
-                            >
-                              Delivered
-                            </option>
-                            <option
-                              value="Out for delivery"
-                              selected={
-                                row.status === "Out for delivery" ? true : false
-                              }
-                            >
-                              Out for delivery
-                            </option>
-                          </select>
-                        )}
-                      </TableCell>
+                              <option
+                                value="Arrival"
+                                selected={
+                                  row.status === "Arrival" ? true : false
+                                }
+                              >
+                                Arrival
+                              </option>
+                              <option
+                                value="Delivered"
+                                selected={
+                                  row.status === "Delivered" ? true : false
+                                }
+                              >
+                                Delivered
+                              </option>
+                              <option
+                                value="Out for delivery"
+                                selected={
+                                  row.status === "Out for delivery"
+                                    ? true
+                                    : false
+                                }
+                              >
+                                Out for delivery
+                              </option>
+                            </select>
+                          )}
+                        </TableCell>
 
+                        <TableCell>
+                          <p className="order-table-text">
+                            {row.outForDeliveryDate}
+                          </p>
+                        </TableCell>
 
-                      <TableCell>
-                        <p className="order-table-text">
-                          {row.outForDeliveryDate}
-                        </p>
-                      </TableCell>
-
-
-
-                      {/* <TableCell>
+                        {/* <TableCell>
                         <p className="order-table-text">{row.deliveredDate}</p>
                       </TableCell> */}
-
-           
-
-                    </TableRow>
-                  );
-                })}
+                      </TableRow>
+                    );
+                  })
+              )}
             </TableBody>
           </Table>
         </TableContainer>
@@ -546,7 +532,7 @@ console.log(ordersList, "ordersList")
           style={{
             backgroundColor: "#fff",
             color: "#F7801A",
-            fontFamily: "Poppins",
+            fontFamily: "Plus Jakarta Sans",
           }}
         />
       </Paper>
