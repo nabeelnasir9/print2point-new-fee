@@ -1,14 +1,16 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
-import { Logo, Search } from "./../../svg";
+import { Logo } from "./../../svg";
 import Grid from "@mui/material/Grid";
 import { Link } from "react-router-dom";
 import "./index.css";
+import { useNavigate } from "react-router-dom";
 
 import AvatarDemo from "../../components/Avatar/AvatarDemo";
 
 const Navbar = ({ onClickSignIn, onClickSignUp }) => {
+  const navigate = useNavigate();
   const [user, setuser] = useState();
 
   useEffect(() => {
@@ -41,7 +43,7 @@ const Navbar = ({ onClickSignIn, onClickSignUp }) => {
         <Grid item xs={1} sm={1} md={1} lg={1} xl={1} />
         <Grid item xs={10} sm={10} md={10} lg={10} xl={10}>
           <div className="navbar-container">
-            <button className="navbar-logo">
+            <button onClick={() => navigate("/")} className="navbar-logo">
               <img src={Logo} alt="" />
             </button>
             <div>
@@ -56,16 +58,24 @@ const Navbar = ({ onClickSignIn, onClickSignUp }) => {
 
               {
                 // true
-                user
-                  ? <AvatarDemo name={user.full_name.charAt(0)} /> :
+                user ? (
+                  <AvatarDemo name={user.full_name.charAt(0)} />
+                ) : (
                   <>
-                    <button className="navbar-sign-in-btn" onClick={onClickSignIn}>
+                    <button
+                      className="navbar-sign-in-btn"
+                      onClick={onClickSignIn}
+                    >
                       Sign in
                     </button>
-                    <button className="navbar-sign-up-btn" onClick={onClickSignUp}>
+                    <button
+                      className="navbar-sign-up-btn"
+                      onClick={onClickSignUp}
+                    >
                       Sign up
                     </button>
                   </>
+                )
               }
             </div>
           </div>
