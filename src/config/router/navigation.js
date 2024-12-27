@@ -1,13 +1,22 @@
+/* eslint-disable react/jsx-pascal-case */
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-
-import { Home, Dashboard, Orders, DeliverDocuments, BusinessMode, VerifyMode, Bank_details, SupportTicketsForm, Setting } from "../../pages";
+import {
+  Home,
+  Dashboard,
+  Setting,
+  Orders,
+  DeliverDocuments,
+  BusinessMode,
+  VerifyMode,
+  Bank_details,
+  SupportTicketsForm,
+  PDFGenerator,
+} from "../../pages";
 import ProtectedRoute from "../../hooks/ProtectedRoute";
-
 const RouterNavigation = () => {
   let token = localStorage.getItem("Agent_access_token");
-  const isAuthenticated = token ? true : false
-  console.log(isAuthenticated, "isAuthenticated")
+  const isAuthenticated = token ? true : false;
 
   return (
     <BrowserRouter>
@@ -77,6 +86,7 @@ const RouterNavigation = () => {
             </ProtectedRoute>
           }
         />
+        <Route path="/generate-pdf" element={<PDFGenerator />} />
       </Routes>
     </BrowserRouter>
   );

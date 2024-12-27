@@ -25,7 +25,7 @@ const FileRenderer = ({ file, numPages, setNumPages }) => {
           onLoadError={(error) => console.error("PDF loading error:", error)}
           style={{ width: "100%", height: "100%" }}
         >
-          {Array.from(new Array(numPages), (el, index) => (
+          {Array.from(new Array(numPages), (_el, index) => (
             <Page
               key={`page_${index + 1}`}
               pageNumber={index + 1}

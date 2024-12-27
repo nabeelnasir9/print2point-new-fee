@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import ReactApexChart from "react-apexcharts";
 
 class ActivityChart extends React.Component {
@@ -9,9 +9,7 @@ class ActivityChart extends React.Component {
       series: [
         {
           name: "Activity",
-          data: [
-            10, 100, 200, 300, 400, 30, 100, 200, 300, 400,250,140
-          ],
+          data: [10, 100, 200, 300, 400, 30, 100, 200, 300, 400, 250, 140],
         },
         // {
         //   name: "Sales",
@@ -38,7 +36,7 @@ class ActivityChart extends React.Component {
         chart: {
           type: "bar",
           height: 350,
-          fontFamily: 'Inter',
+          fontFamily: "Inter",
         },
         plotOptions: {
           bar: {
@@ -75,7 +73,6 @@ class ActivityChart extends React.Component {
         yaxis: {},
         fill: {
           opacity: 1,
-         
         },
         // tooltip: {
         //   y: {
@@ -103,3 +100,4 @@ class ActivityChart extends React.Component {
 }
 
 export default ActivityChart;
+

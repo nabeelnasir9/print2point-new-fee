@@ -6,10 +6,10 @@
 .home-box {
   background-color: #f4f4f6;
   border-radius: 36px;
-  padding: 20px;
+  padding: 70px 50px;
 }
 
-.modal-header-left{
+.modal-header-left {
   display: flex;
   align-items: center;
   gap: 15px;
@@ -92,7 +92,8 @@
 .home-form-submit-btn {
   display: flex;
   align-items: flex-end;
-  justify-content: flex-end;
+  justify-content: space-between;
+  gap: 10px;
   margin-top: 20px;
 }
 .home-form-submit-btn > button {
@@ -315,7 +316,7 @@
   margin-top: 10px;
 }
 .modal-header-heading {
-  color: #606060	;
+  color: #606060;
   /* font-family: "Switzer-Semibold"; */
   font-size: 25px;
   font-weight: 600;
@@ -691,17 +692,17 @@
   font-weight: 400;
   width: 20px;
 }
-.home-list-text{
-  color: #4C4C5C;
+.home-list-text {
+  color: #4c4c5c;
   /* font-family: "Switzer-Regular"; */
   font-size: 18px;
   font-weight: 400;
 }
-.home-list>img{
+.home-list > img {
   width: 40px;
   margin-right: 20px;
 }
-#home-box-left-title{
+#home-box-left-title {
   margin-left: 130px;
 }
 @media only screen and (max-width: 1850px) {
@@ -718,7 +719,7 @@
   .home-box-left-title {
     font-size: 30px;
   }
-  #home-box-left-title{
+  #home-box-left-title {
     margin-left: 50px;
   }
 }
@@ -740,12 +741,9 @@
     font-weight: 600;
     border-radius: 5px;
   }
-  
 }
 
-
-
-.order-table-action-btn{
+.order-table-action-btn {
   height: 35px !important;
   width: 35px !important;
   min-width: 35px !important;
@@ -756,35 +754,28 @@
   padding: 0px !important;
 }
 
-
-
 .file_name {
   word-break: break-word; /* This will break long words to fit within the container */
   white-space: normal; /* Allows wrapping */
   overflow-wrap: break-word; /* Ensures long words are wrapped */
 }
 
-
-
-.modal-footer-next-btn{
+.modal-footer-next-btn {
   width: 100% !important;
-  margin: 10px 0px ;
-
+  margin: 10px 0px;
 }
 
-
-.color_container{
+.color_container {
   display: flex;
-  gap: 2px ;
+  gap: 2px;
   align-items: center;
 }
-
 
 /* Global CSS for the Modal */
 .modal-header-heading {
   font-size: 1.3rem;
   font-weight: bold;
-  color: #606060	;
+  color: #606060;
 }
 
 .modal-header-left-1 {
@@ -794,13 +785,12 @@
   gap: 10px;
 }
 
-.modal-header-left-1-heading{
+.modal-header-left-1-heading {
   font-size: 1.1rem;
   font-weight: 600;
   margin-top: 10px;
   text-transform: capitalize;
   color: #666;
-
 }
 
 .mod {
@@ -824,7 +814,9 @@
   color: #999;
 }
 
-.modal-price-list, .modal-price-list-2, .modal-price-list-3 {
+.modal-price-list,
+.modal-price-list-2,
+.modal-price-list-3 {
   display: flex;
   justify-content: space-between;
   padding: 10px 0;
@@ -877,11 +869,9 @@
   padding: 10px;
 }
 
-
-.table-price{
+.table-price {
   width: 100%;
 }
-
 
 .print-type-container {
   margin-top: 20px;
@@ -890,7 +880,6 @@
 .print-type-label {
   font-weight: bold;
   color: #666;
-
 }
 
 .print-type-dropdown {
@@ -902,41 +891,34 @@
   border-radius: 4px;
 }
 
-
-
-.count_heading{
+.count_heading {
   display: flex;
   align-items: center;
   gap: 10px;
 
-margin-top: 20px;
-  
+  margin-top: 20px;
 }
-.count_heading  .para{
+.count_heading .para {
   font-size: 1rem;
   font-weight: 600;
   text-transform: capitalize;
   color: #666;
 }
 
-
-
-
-.home-form-submit-btn-count{
+.home-form-submit-btn-count {
   width: 100%;
   margin-top: 20px;
 }
 
-
 /* 
 Coupon Input CSS Start
 */
-.coupon-input-main{
+.coupon-input-main {
   border: 1px solid #a2a1a833;
   height: 56px;
   border-radius: 10px;
   padding: 0px 10px;
-  position:relative;
+  position: relative;
 }
 
 .coupon-input-main input[type="text"] {
@@ -947,7 +929,6 @@ Coupon Input CSS Start
   font-size: 16px;
   font-weight: 300;
 }
-
 
 button.coupon-apply-btn {
   position: absolute;
