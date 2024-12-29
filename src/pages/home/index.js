@@ -1410,13 +1410,6 @@ const Home = () => {
           <p className="modal-header-page">Pages: {Printed_file?.pages}</p>
         </div>
         {/* <img src={Invoice} width={"100%"} style={{ marginTop: "20px" }} /> */}
-        {Printed_file ? (
-          <FileRenderer
-            file={Printed_file}
-            numPages={numPages}
-            setNumPages={setNumPages}
-          />
-        ) : null}
 
         <label className="download-btn">
           <input type="file" hidden />
@@ -1459,6 +1452,18 @@ const Home = () => {
             Next
           </button>
         </div>
+        {Printed_file ? (
+          <div>
+            <p style={{ marginTop: 10 }} className="modal-header-heading">
+              Preview
+            </p>
+            <FileRenderer
+              file={Printed_file}
+              numPages={numPages}
+              setNumPages={setNumPages}
+            />
+          </div>
+        ) : null}
       </Model>
       {/* Counter ui */}
       <Model open={Counter} onClose={() => setCounter(false)} maxWidth="sm">
