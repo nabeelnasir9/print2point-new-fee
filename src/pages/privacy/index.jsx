@@ -5,7 +5,6 @@ const Privacy = () => {
     margin: "20px auto",
     maxWidth: "800px",
     padding: "20px",
-    // fontFamily: "Arial, sans-serif",
     lineHeight: "1.6",
     backgroundColor: "#f9f9f9",
     borderRadius: "8px",
