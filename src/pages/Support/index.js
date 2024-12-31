@@ -15,9 +15,9 @@ const SupportTicketsForm = () => {
     email: "",
     order_number: "",
     message: "",
-    bank_name: "",
-    bank_number: "",
-    full_name_bank: "",
+    // bank_name: "",
+    // bank_number: "",
+    // full_name_bank: "",
   });
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
@@ -76,7 +76,7 @@ const SupportTicketsForm = () => {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        }
+        },
       );
       setIsLoading(false);
       setIsSuccess(true);
@@ -111,7 +111,9 @@ const SupportTicketsForm = () => {
           >
             <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15l-4-4 1.41-1.41L11 13.17l6.59-6.59L19 8l-8 8z" />
           </svg>
-          <h1 className="success-message">We have received your query. Our Team will contact you soon!</h1>
+          <h1 className="success-message">
+            We have received your query. Our Team will contact you soon!
+          </h1>
         </div>
       </div>
     );
@@ -182,49 +184,49 @@ const SupportTicketsForm = () => {
               required
             />
           </div>
-          <h3 className="support-tickets-subheading">Bank Details</h3>
-          <div className="support-tickets-field">
-            <label htmlFor="bank_name" className="support-tickets-label">
-              Bank Name
-            </label>
-            <input
-              type="text"
-              id="bank_name"
-              name="bank_name"
-              className="support-tickets-input"
-              value={formData.bank_name}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div className="support-tickets-field">
-            <label htmlFor="bank_number" className="support-tickets-label">
-              Bank Number
-            </label>
-            <input
-              type="text"
-              id="bank_number"
-              name="bank_number"
-              className="support-tickets-input"
-              value={formData.bank_number}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div className="support-tickets-field">
-            <label htmlFor="full_name_bank" className="support-tickets-label">
-              Full Name on Bank Account
-            </label>
-            <input
-              type="text"
-              id="full_name_bank"
-              name="full_name_bank"
-              className="support-tickets-input"
-              value={formData.full_name_bank}
-              onChange={handleChange}
-              required
-            />
-          </div>
+          {/* <h3 className="support-tickets-subheading">Bank Details</h3> */}
+          {/* <div className="support-tickets-field"> */}
+          {/*   <label htmlFor="bank_name" className="support-tickets-label"> */}
+          {/*     Bank Name */}
+          {/*   </label> */}
+          {/*   <input */}
+          {/*     type="text" */}
+          {/*     id="bank_name" */}
+          {/*     name="bank_name" */}
+          {/*     className="support-tickets-input" */}
+          {/*     value={formData.bank_name} */}
+          {/*     onChange={handleChange} */}
+          {/*     required */}
+          {/*   /> */}
+          {/* </div> */}
+          {/* <div className="support-tickets-field"> */}
+          {/*   <label htmlFor="bank_number" className="support-tickets-label"> */}
+          {/*     Bank Number */}
+          {/*   </label> */}
+          {/*   <input */}
+          {/*     type="text" */}
+          {/*     id="bank_number" */}
+          {/*     name="bank_number" */}
+          {/*     className="support-tickets-input" */}
+          {/*     value={formData.bank_number} */}
+          {/*     onChange={handleChange} */}
+          {/*     required */}
+          {/*   /> */}
+          {/* </div> */}
+          {/* <div className="support-tickets-field"> */}
+          {/*   <label htmlFor="full_name_bank" className="support-tickets-label"> */}
+          {/*     Full Name on Bank Account */}
+          {/*   </label> */}
+          {/*   <input */}
+          {/*     type="text" */}
+          {/*     id="full_name_bank" */}
+          {/*     name="full_name_bank" */}
+          {/*     className="support-tickets-input" */}
+          {/*     value={formData.full_name_bank} */}
+          {/*     onChange={handleChange} */}
+          {/*     required */}
+          {/*   /> */}
+          {/* </div> */}
           <button
             type="submit"
             className="support-tickets-submit-button"

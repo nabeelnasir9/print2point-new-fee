@@ -117,6 +117,18 @@ const Footer = () => {
         </Grid>
         <Grid item xs={1} sm={1} md={1} lg={1} xl={1} />
       </Grid>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          gap: "10px",
+        }}
+      >
+        <p className="footer-heading">
+          Open 24 Hours | On-demand | Printing Service
+        </p>
+      </div>
     </div>
   );
 };
