@@ -12,6 +12,8 @@ import {
   Bank_details,
   SupportTicketsForm,
   PDFGenerator,
+  TermsAndConditions,
+  Privacy,
 } from "../../pages";
 import ProtectedRoute from "../../hooks/ProtectedRoute";
 const RouterNavigation = () => {
@@ -22,6 +24,8 @@ const RouterNavigation = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/terms-conditions" element={<TermsAndConditions />} />
+        <Route path="/privacy" element={<Privacy />} />
         <Route
           path="/dashboard"
           element={

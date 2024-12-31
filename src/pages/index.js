@@ -6,6 +6,8 @@ import Bank_details from "./Bank_details";
 import Setting from "./setting";
 import BusinessMode from "./business-mode";
 import VerifyMode from "./verify-mode";
+import Privacy from "./privacy";
+import TermsAndConditions from "./terms-conditions";
 import PDFGenerator from "./generate-pdf/PDFGenerator";
 import SupportTicketsForm from "./Support";
 
@@ -20,4 +22,6 @@ export {
   PDFGenerator,
   Setting,
   SupportTicketsForm,
+  Privacy,
+  TermsAndConditions,
 };

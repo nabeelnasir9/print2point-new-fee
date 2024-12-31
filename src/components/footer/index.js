@@ -46,8 +46,12 @@ const Footer = () => {
                 </Grid>
                 <Grid item xs={12} sm={4} md={4} lg={4} xl={4}>
                   <p className="footer-heading">Terms & Conditions</p>
-                  <Link className="footer-link">Terms of use</Link>
-                  <Link className="footer-link">Privacy Policy</Link>
+                  <Link to="/terms-conditions" className="footer-link">
+                    Terms of use
+                  </Link>
+                  <Link to="/privacy" className="footer-link">
+                    Privacy Policy
+                  </Link>
                 </Grid>
               </Grid>
             </Grid>
