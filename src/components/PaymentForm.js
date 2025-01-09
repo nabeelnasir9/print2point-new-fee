@@ -217,7 +217,7 @@ const App = ({ id, setPaymentModal, setCodeSendSuccessfullyModal }) => {
       appearance: {
         theme: "stripe",
       },
-      paymentMethodOrder: ["google_pay", "apple_pay", "ideal", "card"], // Order of payment methods
+      paymentMethodOrder: ["card"], // Order of payment methods
       locale: "auto", // Ensures region-specific methods show up
     }}>
       <PaymentForm
