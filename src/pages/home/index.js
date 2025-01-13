@@ -39,10 +39,12 @@ import FileRenderer from "../../components/Docs_rendered/FileRenderer";
 import PaymentForm from "../../components/PaymentForm";
 import IncrementDecrement from "../../components/IncrementDecrement/IncrementDecrement";
 import Btnloader from "../../components/Loader/Btnloader";
+import { MdCancel } from "react-icons/md";
+
 
 const emailRjx =
   /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-const Home = () => {
+const Home = (onClose) => {
   const navigate = useNavigate();
   // print form
   const [printName, setPrintName] = useState("");
@@ -1042,6 +1044,7 @@ const Home = () => {
         onClose={() => setLoginModal(false)}
         maxWidth="xs"
       >
+        <div style={{textAlign:'right'}}><MdCancel size={30} color="#F7801A"/></div>
         <p className="modal-from-heading">Welcome👋 </p>
         <p className="modal-from-title">Please login here.</p>
         <div style={{ display: "flex" }}>

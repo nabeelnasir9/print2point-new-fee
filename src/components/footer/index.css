@@ -5,7 +5,14 @@
 .footer-heading {
   color: #ffffff;
   /* font-family: "Switzer-Semibold"; */
-  font-size: 20px;
+  font-size: 18px;
+  font-weight: 600;
+  margin-top: 20px;
+}
+.footer-heading-1 {
+  color: #ffffff;
+  /* font-family: "Switzer-Semibold"; */
+  font-size: 15px;
   font-weight: 600;
   margin-top: 20px;
 }
