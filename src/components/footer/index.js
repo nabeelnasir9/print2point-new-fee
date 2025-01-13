@@ -2,15 +2,23 @@ import React, { useState } from "react";
 import "./index.css";
 import Grid from "@mui/material/Grid";
 import { Link } from "react-router-dom";
-import { FaFacebookF } from "react-icons/fa";
+import {
+  FaFacebookF,
+  FaLinkedinIn,
+  FaApple,
+  FaGooglePlay,
+  FaPhoneAlt, // <-- ADD THIS
+} from "react-icons/fa";
 import { RiInstagramFill } from "react-icons/ri";
-import { FaLinkedinIn } from "react-icons/fa";
 import { IoLogoYoutube } from "react-icons/io5";
 import { toast } from "react-toastify";
+
 const emailRjx =
   /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
 const Footer = () => {
   const [email, setEmail] = useState("");
+
   const SubscribeHandler = () => {
     if (email === "") {
       toast.error("Subscribe Email is required!");
@@ -21,6 +29,7 @@ const Footer = () => {
       setEmail("");
     }
   };
+
   return (
     <div className="footer">
       <Grid container spacing={0}>
@@ -75,6 +84,8 @@ const Footer = () => {
                   />
                   <button onClick={SubscribeHandler}>Subscribe</button>
                 </div>
+
+                {/* Social Links */}
                 <div className="footer-sical-main">
                   <Link
                     to="https://www.facebook.com/hishmatraik/"
@@ -105,6 +116,7 @@ const Footer = () => {
                     <IoLogoYoutube />
                   </Link>
                 </div>
+
                 <p className="footer-copyright">
                   Copyright ©{" "}
                   <Link
@@ -121,19 +133,94 @@ const Footer = () => {
         </Grid>
         <Grid item xs={1} sm={1} md={1} lg={1} xl={1} />
       </Grid>
+
+      {/* Bottom Text, Phone Number & Download App Icons */}
       <div
         style={{
+          marginTop: "1.5rem",
           display: "flex",
+          flexDirection: "column",
           alignItems: "center",
-          justifyContent: "center",
           gap: "10px",
         }}
       >
-        <p className="footer-heading">
-          Open 24 Hours | On-demand | Printing Service
+        {/* Service Info */}
+        <p className="footer-heading-1">
+          Open 24 Hours | On-Demand | Printing Service
         </p>
+
+        {/* Phone Number */}
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "5px",
+            color: "white",
+            justifyContent: "center",
+          }}
+        >
+          <FaPhoneAlt />
+          <a
+            href="tel:+5612345913"
+            style={{ textDecoration: "none", color: "white" }}
+          >
+            +561-234-5913
+          </a>
+        </div>
+
+        {/* Download App Section */}
+        <div className="footer-apps" style={{ textAlign: "center" }}>
+          <p
+            style={{
+              fontWeight: "bold",
+              marginBottom: "8px",
+              color: "white",
+            }}
+          >
+            Download Our App
+          </p>
+          <div
+            style={{
+              display: "flex",
+              gap: "20px",
+              justifyContent: "center",
+            }}
+          >
+            <a
+              href="https://apps.apple.com/us/app/print-to-point/id1537718935"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "5px",
+                textDecoration: "none",
+                color: "white",
+              }}
+            >
+              <FaApple size={24} />
+              <span>App Store</span>
+            </a>
+            <a
+              href="https://play.google.com/store/apps/details?id=com.printtopoint"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "5px",
+                textDecoration: "none",
+                color: "white",
+              }}
+            >
+              <FaGooglePlay size={24} />
+              <span>Google Play</span>
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   );
 };
+
 export default Footer;
