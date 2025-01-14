@@ -44,7 +44,7 @@ import { MdCancel } from "react-icons/md";
 
 const emailRjx =
   /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-const Home = (onClose) => {
+const Home = ({onClose}) => {
   const navigate = useNavigate();
   // print form
   const [printName, setPrintName] = useState("");
@@ -183,7 +183,11 @@ const Home = (onClose) => {
   const [Counter, setCounter] = useState(false);
 
   const [originalLocationList, setOriginalLocationList] = useState([]);
+  const handleClose = () => {
+    setSignUpModal(false)
+    setLoginModal(false);
 
+  }
   const pricingTable = [
     { range: [1, 5], blackAndWhitePrice: 5.53, colorPrice: 6.64 },
     { range: [6, 10], blackAndWhitePrice: 8.31, colorPrice: 9.42 },
@@ -1044,7 +1048,7 @@ const Home = (onClose) => {
         onClose={() => setLoginModal(false)}
         maxWidth="xs"
       >
-        <div style={{textAlign:'right'}}><MdCancel size={30} color="#F7801A"/></div>
+        <div style={{textAlign:'right'}} onClick={handleClose}><MdCancel size={30} color="#F7801A"/></div>
         <p className="modal-from-heading">Welcome👋 </p>
         <p className="modal-from-title">Please login here.</p>
         <div style={{ display: "flex" }}>
@@ -1133,6 +1137,7 @@ const Home = (onClose) => {
         onClose={() => setSignUpModal(false)}
         maxWidth="xs"
       >
+       <div style={{textAlign:'right'}} onClick={handleClose}><MdCancel size={30} color="#F7801A"/></div>
         <p className="modal-from-heading">Registration👋 </p>
         <p className="modal-from-title">Sign up here.</p>
         <div style={{ display: "flex" }}>

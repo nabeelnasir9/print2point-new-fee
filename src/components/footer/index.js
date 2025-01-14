@@ -160,12 +160,12 @@ const Footer = () => {
           }}
         >
           <FaPhoneAlt />
-          <a
-            href="tel:+5612345913"
+          <div
+            href=""
             style={{ textDecoration: "none", color: "white" }}
           >
-            +561-234-5913
-          </a>
+            561-234-5913
+          </div>
         </div>
 
         {/* Download App Section */}
