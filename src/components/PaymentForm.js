@@ -5,7 +5,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 
 // Stripe publishable key
-const stripePromise = loadStripe("pk_test_51H31ubHTxsLPmt2xl1NOkurilkbgWSguMRHYP0N2VqVVyLEVOxnFWsF9ZAHGMeAJxBgvhpkpWF0DsniBHzrVPDen008Rr3pFGT");
+const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY);
 
 const PaymentForm = ({ setPaymentModal, setCodeSendSuccessfullyModal, clientSecret }) => {
   const stripe = useStripe();
