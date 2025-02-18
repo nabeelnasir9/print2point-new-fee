@@ -887,9 +887,10 @@ const Home = ({ onClose }) => {
     }
   };
 
+  /** INFO: somehow still triggers loginModal to true so explicitly setting to false  */
   const protectedRouteHandler = () => {
     if (!agent_token) {
-      setLoginModal(true);
+      setLoginModal(false);
     }
   };
 
@@ -1036,6 +1037,38 @@ const Home = ({ onClose }) => {
             </Grid>
           </div>
         </Grid>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            width: "100%",
+            marginTop: "20px",
+            backgroundColor: "#fff",
+          }}
+        >
+          <div
+            style={{
+              borderRadius: "10px",
+              border: "1px solid #f7801a",
+              overflow: "hidden",
+              width: "70%",
+              height: "400px",
+              marginBottom: "20px",
+            }}
+          >
+            <iframe
+              src="https://my.atlist.com/map/0d6553c0-1c78-49af-bef5-1c24b3162353?share=true"
+              allow="geolocation 'self' https://my.atlist.com"
+              width="100%"
+              height="800px"
+              loading="lazy"
+              frameborder="0"
+              scrolling="no"
+              allowfullscreen
+              id="atlist-embed"
+            ></iframe>
+          </div>
+        </div>
         <Grid item xs={1} sm={1} md={1} lg={1} xl={1} />
       </Grid>
       <div className="home-empty-box" />
