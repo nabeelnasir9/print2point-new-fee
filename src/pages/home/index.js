@@ -1057,13 +1057,16 @@ const Home = ({ onClose }) => {
             }}
           >
             <iframe
+              style={{
+                width: "100%",
+                height: "100%",
+              }}
               src="https://my.atlist.com/map/0d6553c0-1c78-49af-bef5-1c24b3162353?share=true"
               allow="geolocation 'self' https://my.atlist.com"
               width="100%"
               height="800px"
               loading="lazy"
               frameborder="0"
-              scrolling="no"
               allowfullscreen
               id="atlist-embed"
             ></iframe>
