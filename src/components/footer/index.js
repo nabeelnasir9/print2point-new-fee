@@ -88,28 +88,28 @@ const Footer = () => {
                 {/* Social Links */}
                 <div className="footer-sical-main">
                   <Link
-                    to="https://www.facebook.com/hishmatraik/"
+                    to="https://m.facebook.com/PrintToPoint/"
                     target="_blank"
                     className="footer-social-btn"
                   >
                     <FaFacebookF />
                   </Link>
                   <Link
-                    to="https://www.facebook.com/hishmatraik/"
+                    to="https://www.instagram.com/printtopoint?igsh=eDF3aWU3OXV5eW5u&utm_source=qr"
                     target="_blank"
                     className="footer-social-btn"
                   >
                     <RiInstagramFill />
                   </Link>
                   <Link
-                    to="https://www.facebook.com/hishmatraik/"
+                    to="https://www.linkedin.com/company/print-to-point/"
                     target="_blank"
                     className="footer-social-btn"
                   >
                     <FaLinkedinIn />
                   </Link>
                   <Link
-                    to="https://www.facebook.com/hishmatraik/"
+                    to="https://youtube.com/@printtopoint?si=X_hY2Nzl6IZvcX3B"
                     target="_blank"
                     className="footer-social-btn"
                   >

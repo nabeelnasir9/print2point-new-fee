@@ -41,6 +41,7 @@ import PaymentForm from "../../components/PaymentForm";
 import IncrementDecrement from "../../components/IncrementDecrement/IncrementDecrement";
 import Btnloader from "../../components/Loader/Btnloader";
 import { MdCancel } from "react-icons/md";
+import ElfsightGoogleReviews from "../../components/ElfsightGoogleReviews";
 
 const emailRjx =
   /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -1041,11 +1042,18 @@ const Home = ({ onClose }) => {
           style={{
             display: "flex",
             justifyContent: "center",
+            flexDirection: "column",
+            alignItems: "center",
             width: "100%",
             marginTop: "20px",
             backgroundColor: "#fff",
           }}
         >
+          <div style={{
+             marginTop: "30px",
+          }}>
+        <ElfsightGoogleReviews/>
+      </div>
           <div
             style={{
               borderRadius: "10px",
@@ -1074,8 +1082,14 @@ const Home = ({ onClose }) => {
         </div>
         <Grid item xs={1} sm={1} md={1} lg={1} xl={1} />
       </Grid>
-      <div className="home-empty-box" />
+      {/* <div>
+        <ElfsightGoogleReviews/>
+      </div> */}
+      {/* <div className="home-empty-box" /> */}
       <Footer />
+      {/* <div>
+        <ElfsightGoogleReviews/>
+      </div> */}
       {/* login modal */}
       <Model
         open={loginModal}
