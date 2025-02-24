@@ -1049,11 +1049,7 @@ const Home = ({ onClose }) => {
             backgroundColor: "#fff",
           }}
         >
-          <div style={{
-             marginTop: "30px",
-          }}>
-        <ElfsightGoogleReviews/>
-      </div>
+          
           <div
             style={{
               borderRadius: "10px",
@@ -1079,6 +1075,11 @@ const Home = ({ onClose }) => {
               id="atlist-embed"
             ></iframe>
           </div>
+                <div style={{
+             marginTop: "30px",
+          }}>
+        <ElfsightGoogleReviews/>
+      </div>
         </div>
         <Grid item xs={1} sm={1} md={1} lg={1} xl={1} />
       </Grid>
