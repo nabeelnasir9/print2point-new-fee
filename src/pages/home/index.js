@@ -1049,7 +1049,6 @@ const Home = ({ onClose }) => {
             backgroundColor: "#fff",
           }}
         >
-          
           <div
             style={{
               borderRadius: "10px",
@@ -1075,11 +1074,13 @@ const Home = ({ onClose }) => {
               id="atlist-embed"
             ></iframe>
           </div>
-                <div style={{
-             marginTop: "30px",
-          }}>
-        <ElfsightGoogleReviews/>
-      </div>
+          <div
+            style={{
+              marginTop: "30px",
+            }}
+          >
+            <ElfsightGoogleReviews />
+          </div>
         </div>
         <Grid item xs={1} sm={1} md={1} lg={1} xl={1} />
       </Grid>
@@ -1667,17 +1668,22 @@ const Home = ({ onClose }) => {
           <img src={Map2} />
         </div>
 
-        {/* <div className="modal-map"> */}
-        {/*   <iframe */}
-        {/*     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d28823.460374453345!2d-80.48738101619446!3d25.44051856350412!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88d9e0cb35a8cf39%3A0xf7bdead0fe918320!2sFlorida%20City%2C%20FL%2C%20USA!5e0!3m2!1sen!2s!4v1730069520065!5m2!1sen!2s" */}
-        {/*     width="600" */}
-        {/*     height="450" */}
-        {/*     style={{ border: "0" }} */}
-        {/*     allowFullScreen */}
-        {/*     loading="lazy" */}
-        {/*     referrerPolicy="no-referrer-when-downgrade" */}
-        {/*   /> */}
-        {/* </div> */}
+        <div className="modal-map">
+          <iframe
+            style={{
+              width: "100%",
+              height: "100%",
+            }}
+            src="https://my.atlist.com/map/0d6553c0-1c78-49af-bef5-1c24b3162353?share=true"
+            allow="geolocation 'self' https://my.atlist.com"
+            width="100%"
+            height="800px"
+            loading="lazy"
+            frameborder="0"
+            allowfullscreen
+            id="atlist-embed"
+          ></iframe>
+        </div>
         <div>
           <p style={{ marginTop: "10px", fontSize: "18px", fontWeight: "700" }}>
             Available Agents:
