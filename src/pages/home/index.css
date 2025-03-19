@@ -934,6 +934,26 @@ button.coupon-apply-btn {
   position: absolute;
   margin-top: 19px;
 }
+
+.home-p-tags {
+  font-size: 30px;
+  font-weight: 900;
+}
+/* reduce size of .home-p-tags on mobile */
+
+@media only screen and (max-width: 600px) {
+  .p-tag-container {
+    display: none;
+  }
+}
+
+.p-tag-container {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  gap: 10px;
+}
+
 /* 
 Coupon Input CSS End
 */

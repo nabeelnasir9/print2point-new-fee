@@ -934,29 +934,51 @@ const Home = ({ onClose }) => {
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit
                     gestas egestas viverra turpis habitant eu sociis ferm.
                   </p> */}
-                  <div className="home-list">
-                    {/* <p className="home-list-type">1. </p> */}
-                    <img src={File} />
-                    <p className="home-list-text">Upload your file.</p>
-                  </div>
-                  <div className="home-list">
-                    {/* <p className="home-list-type">2. </p> */}
-                    <img src={LocationList} />
-                    <p className="home-list-text">Choose your Print Agent.</p>
-                  </div>
-                  <div className="home-list">
-                    {/* <p className="home-list-type">3. </p> */}
-                    <img src={Printing} />
-                    <p className="home-list-text">
-                      Use your secure confirmation code to print your documents.
-                    </p>
-                  </div>
-                  <button
-                    className="get-started-btn"
-                    onClick={() => setSignUpModal(true)}
+                  <div
+                    style={{
+                      display: "flex",
+                    }}
                   >
-                    Get Started
-                  </button>
+                    <div className="p-tag-container">
+                      <p className="home-p-tags">no printer?</p>
+                      <p className="home-p-tags">no paper?</p>
+                      <p className="home-p-tags">no ink?</p>
+                      <p className="home-p-tags">no problem</p>
+                    </div>
+                    <div>
+                      <div className="home-list">
+                        {/* <p className="home-list-type">1. </p> */}
+                        <img src={File} />
+                        <p className="home-list-text">Upload your file.</p>
+                      </div>
+                      <div className="home-list">
+                        {/* <p className="home-list-type">2. </p> */}
+                        <img src={LocationList} />
+                        <p className="home-list-text">
+                          Choose your Print Agent.
+                        </p>
+                      </div>
+                      <div className="home-list">
+                        {/* <p className="home-list-type">3. </p> */}
+                        <img src={Printing} />
+                        <p className="home-list-text">
+                          Use your secure confirmation code to print your
+                          documents.
+                        </p>
+                      </div>
+                      <button
+                        className="get-started-btn"
+                        onClick={() => setSignUpModal(true)}
+                      >
+                        Get Started
+                      </button>
+                    </div>
+                  </div>
+                  <p style={{ marginTop: "50px" }}>
+                    We provide 24-hour printing services for standard 8.5x11
+                    paper, in both color and black & white, for on-demand pickup
+                    or delivery
+                  </p>
                 </div>
               </Grid>
 

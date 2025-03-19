@@ -66,9 +66,30 @@ const Footer = () => {
             </Grid>
             <Grid item xs={12} sm={5} md={4} lg={2} xl={2}>
               <p className="footer-heading">Support</p>
-              <Link className="footer-link">Customer Support</Link>
-              <Link className="footer-link">Print Agent Support</Link>
-              <Link className="footer-link">Contact Us</Link>
+              <a
+                href="mailto:support@printtopoint.com"
+                target="_blank"
+                rel="noreferrer"
+                className="footer-link"
+              >
+                Customer Support
+              </a>
+              <a
+                href="mailto:support@printtopoint.com"
+                target="_blank"
+                rel="noreferrer"
+                className="footer-link"
+              >
+                Print Agent Support
+              </a>
+              <a
+                href="mailto:support@printtopoint.com"
+                target="_blank"
+                rel="noreferrer"
+                className="footer-link"
+              >
+                Contact Us
+              </a>
             </Grid>
             <Grid item xs={12} sm={12} md={12} lg={5} xl={5}>
               <div className="footer-from">
@@ -160,10 +181,7 @@ const Footer = () => {
           }}
         >
           <FaPhoneAlt />
-          <div
-            href=""
-            style={{ textDecoration: "none", color: "white" }}
-          >
+          <div href="" style={{ textDecoration: "none", color: "white" }}>
             561-234-5913
           </div>
         </div>
