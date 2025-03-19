@@ -939,19 +939,21 @@ button.coupon-apply-btn {
   font-size: 30px;
   font-weight: 900;
 }
-/* reduce size of .home-p-tags on mobile */
-
-@media only screen and (max-width: 600px) {
-  .p-tag-container {
-    display: none;
-  }
-}
 
 .p-tag-container {
   display: flex;
   flex-direction: column;
   width: 50%;
   gap: 10px;
+}
+
+/* reduce size of .home-p-tags on mobile */
+
+@media only screen and (max-width: 600px) {
+  .p-tag-container {
+    display: none;
+    width: 0;
+  }
 }
 
 /* 

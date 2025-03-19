@@ -940,10 +940,10 @@ const Home = ({ onClose }) => {
                     }}
                   >
                     <div className="p-tag-container">
-                      <p className="home-p-tags">no printer?</p>
-                      <p className="home-p-tags">no paper?</p>
-                      <p className="home-p-tags">no ink?</p>
-                      <p className="home-p-tags">no problem</p>
+                      <p className="home-p-tags">No printer?</p>
+                      <p className="home-p-tags">No paper?</p>
+                      <p className="home-p-tags">No ink?</p>
+                      <p className="home-p-tags">No problem</p>
                     </div>
                     <div>
                       <div className="home-list">
