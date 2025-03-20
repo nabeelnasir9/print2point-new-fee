@@ -936,7 +936,7 @@ button.coupon-apply-btn {
 }
 
 .home-p-tags {
-  font-size: 30px;
+  font-size: 25px;
   font-weight: 900;
 }
 
@@ -947,12 +947,25 @@ button.coupon-apply-btn {
   gap: 10px;
 }
 
+.p-tag-home-container {
+  display: flex;
+  gap: 40px;
+}
+
 /* reduce size of .home-p-tags on mobile */
 
 @media only screen and (max-width: 600px) {
   .p-tag-container {
-    display: none;
-    width: 0;
+    text-align: center;
+    width: 100%;
+  }
+
+  .p-tag-home-container {
+    flex-direction: column;
+    gap: 40px;
+  }
+  .home-p-tags {
+    font-size: 1.4rem;
   }
 }
 

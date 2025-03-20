@@ -934,11 +934,7 @@ const Home = ({ onClose }) => {
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit
                     gestas egestas viverra turpis habitant eu sociis ferm.
                   </p> */}
-                  <div
-                    style={{
-                      display: "flex",
-                    }}
-                  >
+                  <div className="p-tag-home-container">
                     <div className="p-tag-container">
                       <p className="home-p-tags">No printer?</p>
                       <p className="home-p-tags">No paper?</p>
