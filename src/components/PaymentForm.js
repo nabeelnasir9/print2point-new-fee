@@ -150,7 +150,7 @@ const PaymentForm = ({ setPaymentModal, setCodeSendSuccessfullyModal, clientSecr
       {/* Only show PaymentElement if user selects "Use a new card" */}
       {useNewCard && (
         <div style={{ marginBottom: "10px" }}>
-          <PaymentElement />
+          <PaymentElement options={{ terms: {card:'never'} }} />
         </div>
       )}
 
@@ -219,7 +219,6 @@ const App = ({ id, setPaymentModal, setCodeSendSuccessfullyModal }) => {
       },
       paymentMethodOrder: ["card"], // Order of payment methods
       locale: "auto", // Ensures region-specific methods show up
-      terms: {card:'never'}, // Hide terms
     }}>
       <PaymentForm
         setPaymentModal={setPaymentModal}
