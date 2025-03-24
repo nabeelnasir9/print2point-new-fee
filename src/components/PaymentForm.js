@@ -103,13 +103,7 @@ const PaymentForm = ({ setPaymentModal, setCodeSendSuccessfullyModal, clientSecr
   return (
     <form onSubmit={handleSubmit}>
       <h2 style={{ marginBottom: "10px", textTransform: "uppercase", color: "#606060" }}>Payment:</h2>
-      <style>
-        {`
-          .p-PaymentElement .TermsText {
-            display: none !important;
-          }
-        `}
-      </style>
+      
       {/* Option to use saved cards */}
       <div style={{ marginBottom: "10px" }}>
         <h3>Select Payment Method</h3>
@@ -225,6 +219,7 @@ const App = ({ id, setPaymentModal, setCodeSendSuccessfullyModal }) => {
       },
       paymentMethodOrder: ["card"], // Order of payment methods
       locale: "auto", // Ensures region-specific methods show up
+      terms: {card:'never'}, // Hide terms
     }}>
       <PaymentForm
         setPaymentModal={setPaymentModal}
