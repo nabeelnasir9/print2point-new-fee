@@ -31,7 +31,7 @@
   z-index: 1;
 }
 
-.Text-buton{
+.Text-buton {
   height: 100% !important;
   width: 100% !important;
 }
@@ -42,7 +42,6 @@
   width: 100% !important;
 
 /* } */
-  
 
 /* index.css */
 .confirm-button {
@@ -68,7 +67,8 @@
 }
 
 @media print {
-  html, body {
+  html,
+  body {
     width: 100%;
     margin: 0;
     padding: 0;
@@ -78,8 +78,7 @@
     page-break-after: avoid;
     page-break-inside: avoid;
     page-break-before: avoid;
-    }
-
+  }
 
   .main_container {
     margin: 0;
@@ -106,41 +105,36 @@
     page-break-after: always;
     page-break-inside: avoid;
     width: 100% !important;
-
   }
 
   .pdf-page canvas {
-    max-width: 95% !important;
+    max-width: 100% !important;
     height: auto !important;
-    margin: 0 auto;
+    margin: 0;
     padding: 0;
     box-sizing: border-box;
     width: 100% !important;
-
   }
   .main_container {
     margin: 0;
     page-break-after: avoid;
     page-break-inside: avoid;
     page-break-before: avoid;
-    max-width: 95% !important;
-    margin: 0 auto;
+    max-width: 100% !important;
+    /* margin: 0 auto; */
     width: 100% !important;
-
   }
 
-
-
-  .print-content{
+  .print-content {
     opacity: 1 !important;
-    
   }
 
-  .page-header-main{
+  .page-header-main {
     display: none !important;
   }
-.side-menu-header, .right-side-header-container{
-  display: none !important;
+  .side-menu-header,
+  .right-side-header-container {
+    display: none !important;
+  }
 }
 
-}

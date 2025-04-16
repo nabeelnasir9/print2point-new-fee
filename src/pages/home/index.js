@@ -188,6 +188,9 @@ const Home = ({ onClose }) => {
     setSignUpModal(false);
     setLoginModal(false);
   };
+  const handleCloseForgotPassword = () => {
+    setForgotPasswordModal(false);
+  };
   const pricingTable = [
     { range: [1, 5], blackAndWhitePrice: 5.53, colorPrice: 6.64 },
     { range: [6, 10], blackAndWhitePrice: 8.31, colorPrice: 9.42 },
@@ -2090,7 +2093,7 @@ const Home = ({ onClose }) => {
           className="confirm-email-modal-header"
           style={{ justifyContent: "flex-start" }}
         >
-          <button className="back-button" onClick={() => {}}>
+          <button className="back-button" onClick={handleCloseForgotPassword}>
             <img src={ArrowLeft} />
             <p>Back</p>
           </button>
