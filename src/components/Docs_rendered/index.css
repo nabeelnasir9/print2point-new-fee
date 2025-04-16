@@ -18,7 +18,8 @@
 }
 @media print {
   .pdf-page {
-    page-break-after: always;
+    page-break-after: avoid;
+    break-after: avoid-page;
     page-break-inside: avoid;
     /* margin: 0 auto; */
     padding: 0;
@@ -34,4 +35,3 @@
     width: 100% !important;
   }
 }
-
