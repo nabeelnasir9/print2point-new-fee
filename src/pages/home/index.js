@@ -130,8 +130,13 @@ const Home = ({ onClose }) => {
   {
     /* Forgot Password */
   }
-  const [forgotPasswordModal, setForgotPasswordModal] = useState(false);
   const [newPasswordModal, setnewPasswordModal] = useState(false);
+  const [forgotPasswordModal, setForgotPasswordModal] = useState(false);
+const [resetPasswordModal, setResetPasswordModal] = useState(false);
+const [newPassword, setNewPassword] = useState("");
+const [reset_loading, setreset_loading] = useState(false);
+const [showPassword, setShowPassword] = useState(false);
+
   // {
   //   created_at: "2024-10-04T19:30:32.662Z",
   //   customer_id: "66e0a7a5eb12ada0047ecd23",
@@ -901,6 +906,68 @@ const Home = ({ onClose }) => {
   useEffect(() => {
     protectedRouteHandler();
   }, [agent_token]);
+
+
+  const requestPasswordResetOTP = async () => {
+    try {
+      setforgot_loading(true);
+      let AgentFlag = loginType === "Agent";
+      
+      let URL = AgentFlag
+        ? "/auth/print-agent/forgot-password"
+        : "/auth/customer/forgot-password";
+  
+      await axios.post(
+        `${process.env.REACT_APP_API_URL}${URL}`,
+        { email: forgetEmail }
+      );
+  
+      setForgotPasswordModal(false);
+      setResetPasswordModal(true);
+      toast.success("OTP sent to your email");
+    } catch (error) {
+      if (error.response?.data?.message) {
+        toast.error(error.response.data.message);
+      } else {
+        toast.error("Failed to send OTP. Please try again.");
+      }
+    } finally {
+      setforgot_loading(false);
+    }
+  };
+  
+  // Step 2: Reset password with OTP
+  const resetPassword = async () => {
+    try {
+      setreset_loading(true);
+      let AgentFlag = loginType === "Agent";
+      
+      let URL = AgentFlag
+        ? "/auth/print-agent/reset-password"
+        : "/auth/customer/reset-password";
+  
+      await axios.post(
+        `${process.env.REACT_APP_API_URL}${URL}`,
+        { 
+          email: forgetEmail, 
+          otp: otp, 
+          password: newPassword 
+        }
+      );
+  
+      setResetPasswordModal(false);
+      setPasswordUpdateSuccModal(true);
+      toast.success("Password reset successful");
+    } catch (error) {
+      if (error.response?.data?.message) {
+        toast.error(error.response.data.message);
+      } else {
+        toast.error("Failed to reset password. Please verify your OTP and try again.");
+      }
+    } finally {
+      setreset_loading(false);
+    }
+  };
 
   return (
     <div>
@@ -2084,180 +2151,124 @@ const Home = ({ onClose }) => {
         </p>
       </Model>
       {/* Forgot Password */}
-      <Model
-        open={forgotPasswordModal}
-        onClose={() => setForgotPasswordModal(false)}
-        maxWidth="sm"
-      >
-        <div
-          className="confirm-email-modal-header"
-          style={{ justifyContent: "flex-start" }}
-        >
-          <button className="back-button" onClick={handleCloseForgotPassword}>
-            <img src={ArrowLeft} />
-            <p>Back</p>
-          </button>
-        </div>
+    {/* Forgot Password - Request OTP Modal */}
+<Model
+  open={forgotPasswordModal}
+  onClose={() => setForgotPasswordModal(false)}
+  maxWidth="sm"
+>
+  <div className="confirm-email-modal-header" style={{ justifyContent: "flex-start" }}>
+    <button className="back-button" onClick={() => setForgotPasswordModal(false)}>
+      <img src={ArrowLeft} />
+      <p>Back</p>
+    </button>
+  </div>
 
-        <p
-          className="confirm-email-modal-heading"
-          style={{ textAlign: "left" }}
-        >
-          Forgot Password
-        </p>
-        <p className="verification-text">
-          Enter your registered email address. we will send you a code to reset
-          your password.
-        </p>
-        <Input
-          title="Email"
-          value={forgetEmail}
-          onChange={(e) => setforgetEmail(e.target.value)}
-          placeholder="john@example.com"
-        />
+  <p className="confirm-email-modal-heading" style={{ textAlign: "left" }}>
+    Forgot Password
+  </p>
+  <p className="verification-text">
+    Enter your registered email address. We will send you a code to reset your password.
+  </p>
+  <Input
+    title="Email"
+    value={forgetEmail}
+    onChange={(e) => setforgetEmail(e.target.value)}
+    placeholder="john@example.com"
+  />
 
-        <Button
-          title={forgot_loading ? <Btnloader /> : "Send OTP"}
-          disabled={forgot_loading}
-          onClick={() => {
-            foreget_passowrd();
-          }}
-        />
-      </Model>
-      {/* password otp */}
-      <Model
-        open={passwordOtpMoadal}
-        onClose={() => setPasswrodOtpModal(false)}
-        maxWidth="sm"
-      >
-        <div
-          className="confirm-email-modal-header"
-          style={{ justifyContent: "flex-start" }}
-        >
-          <button
-            className="back-button"
-            onClick={() => {
-              setPasswrodOtpModal(false);
-              setForgotPasswordModal(true);
-            }}
-          >
-            <img src={ArrowLeft} />
-            <p>Back</p>
-          </button>
-        </div>
+  <Button
+    title={forgot_loading ? <Btnloader /> : "Send OTP"}
+    disabled={forgot_loading}
+    onClick={requestPasswordResetOTP}
+  />
+</Model>
 
-        <p
-          className="confirm-email-modal-heading"
-          style={{ textAlign: "left" }}
-        >
-          Enter the OTP
-        </p>
-        <p className="verification-text">
-          We have shared a code of your registered email address {forgetEmail}
-        </p>
-        <div className="otp-div">
-          <OtpInput
-            value={otp}
-            onChange={setOtp}
-            placeholder="0"
-            numInputs={6}
-            renderInput={(props) => <input {...props} placeholder="0" />}
-            isInputNum={true}
-            shouldAutoFocus={true}
-            containerStyle={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-            }}
-            inputStyle="otp-input"
-            focusStyle={{
-              border: "1px solid #CFD3DB",
-              outline: "none",
-            }}
-          />
-        </div>
-        <Button
-          disabled={otp_loading}
-          title={otp_loading ? <Btnloader /> : "Verify"}
-          onClick={() => {
-            otp_Verify();
-          }}
-        />
-      </Model>
-      {/* New passowrd */}
-      <Model
-        open={newPasswordModal}
-        onClose={() => setnewPasswordModal(false)}
-        maxWidth="sm"
-      >
-        <div
-          className="confirm-email-modal-header"
-          style={{ justifyContent: "flex-start" }}
-        >
-          <button
-            className="back-button"
-            onClick={() => {
-              setPasswrodOtpModal(true);
-              setnewPasswordModal(false);
-            }}
-          >
-            <img src={ArrowLeft} />
-            <p>Back</p>
-          </button>
-        </div>
+{/* Reset Password - Enter OTP and New Password Modal */}
+<Model
+  open={resetPasswordModal}
+  onClose={() => setResetPasswordModal(false)}
+  maxWidth="sm"
+>
+  <div className="confirm-email-modal-header" style={{ justifyContent: "flex-start" }}>
+    <button className="back-button" onClick={() => {
+      setResetPasswordModal(false);
+      setForgotPasswordModal(true);
+    }}>
+      <img src={ArrowLeft} />
+      <p>Back</p>
+    </button>
+  </div>
 
-        <p
-          className="confirm-email-modal-heading"
-          style={{ textAlign: "left" }}
-        >
-          Forgot Password
-        </p>
-        <p className="verification-text">Enter your New passowrd.</p>
-        {/* <Input password={true} title="Passowrd" value={forgetEmail} onChange={(e) => setforgetEmail(e.target.value)} placeholder="john@example.com" /> */}
+  <p className="confirm-email-modal-heading" style={{ textAlign: "left" }}>
+    Reset Password
+  </p>
+  <p className="verification-text">
+    We have sent a verification code to {forgetEmail}. Please enter the code and your new password.
+  </p>
+  
+  <div className="otp-div">
+    <OtpInput
+      value={otp}
+      onChange={setOtp}
+      placeholder="0"
+      numInputs={6}
+      renderInput={(props) => <input {...props} placeholder="0" />}
+      isInputNum={true}
+      shouldAutoFocus={true}
+      containerStyle={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+      }}
+      inputStyle="otp-input"
+      focusStyle={{
+        border: "1px solid #CFD3DB",
+        outline: "none",
+      }}
+    />
+  </div>
+  
+  <Input
+    password={true}
+    title="New Password"
+    show={showPassword}
+    type={!showPassword ? "password" : "text"}
+    placeholder="••••••••••••••••"
+    value={newPassword}
+    onChange={(e) => setNewPassword(e.target.value)}
+    passwordHideShowHandler={() => setShowPassword(!showPassword)}
+  />
 
-        <Input
-          password={true}
-          title="Password"
-          show={showLoginPassword}
-          type={!showLoginPassword ? "password" : "text"}
-          placeholder="••••••••••••••••"
-          value={forgotPassword}
-          onChange={(val) => setforgotPassword(val.target.value)}
-          passwordHideShowHandler={() =>
-            setShowLoginPassword(!showLoginPassword)
-          }
-        />
+  <Button
+    title={reset_loading ? <Btnloader /> : "Reset Password"}
+    disabled={reset_loading}
+    onClick={resetPassword}
+  />
+</Model>
 
-        <Button
-          title={newpassowrd_loading ? <Btnloader /> : "SUBMIT"}
-          disabled={newpassowrd_loading}
-          onClick={() => {
-            new_passord_handler();
-          }}
-        />
-      </Model>
-      {/* Password update Successful */}
-      <Model
-        open={passwordUpdateSuccModal}
-        onClose={() => setPasswordUpdateSuccModal(false)}
-        maxWidth="xs"
-      >
-        <div className="modal-icon">
-          <img src={Success} height={100} />
-        </div>
-        <p className="password-update-successful">Password update Successful</p>
-        <p className="verification-text" style={{ textAlign: "center" }}>
-          Your password has been successfully updated
-        </p>
+{/* Password Update Success Modal */}
+<Model
+  open={passwordUpdateSuccModal}
+  onClose={() => setPasswordUpdateSuccModal(false)}
+  maxWidth="xs"
+>
+  <div className="modal-icon">
+    <img src={Success} height={100} />
+  </div>
+  <p className="password-update-successful">Password Reset Successful</p>
+  <p className="verification-text" style={{ textAlign: "center" }}>
+    Your password has been successfully updated
+  </p>
 
-        <Button
-          title="Return to login"
-          onClick={() => {
-            setPasswordUpdateSuccModal(false);
-            setLoginModal(true);
-          }}
-        />
-      </Model>
+  <Button
+    title="Return to login"
+    onClick={() => {
+      setPasswordUpdateSuccModal(false);
+      setLoginModal(true);
+    }}
+  />
+</Model>
       {/* Link your bank account */}
       <Model
         open={linkBankAccountModal}
