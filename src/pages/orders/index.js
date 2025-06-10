@@ -55,6 +55,7 @@ const Orders = () => {
   const [ordersList, setOrdersList] = useState([]);
   const [allSelected, setAllSelected] = useState(false);
   const [loading, setloading] = useState(false);
+  const [customerMap, setCustomerMap] = useState({});
 
   const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(+event.target.value);
@@ -63,6 +64,28 @@ const Orders = () => {
 
   const handleChangePage = (_event, newPage) => {
     setPage(newPage);
+  };
+
+  const get_Customers = async () => {
+    if (!agent_token) return;
+    try {
+      const res = await axios.get(
+        `${process.env.REACT_APP_API_URL}/print-agent/all-customers`,
+        {
+          headers: {
+            Authorization: `Bearer ${agent_token}`,
+          },
+        }
+      );
+      // Create a map of customer_id to full_name
+      const map = {};
+      res.data.customers.forEach((c) => {
+        map[c._id] = c.full_name;
+      });
+      setCustomerMap(map);
+    } catch (e) {
+      // Optionally handle error
+    }
   };
 
   const get_Orders = async () => {
@@ -77,10 +100,10 @@ const Orders = () => {
           },
         },
       );
-
+      // Use customerMap to get the name
       const dynamicOrders = orders.data.printJobs.map((job) => ({
         isSelected: false,
-        customerName: job.customer_id,
+        customerName: customerMap[job.customer_id] || job.customer_id,
         jobTitle: job.print_job_title, // New field
         copies: job.no_of_copies, // New field
         isColor: job.is_color ? "Yes" : "No", // New field
@@ -92,7 +115,6 @@ const Orders = () => {
           job.payment_status.slice(1),
         createdDate: new Date(job.created_at).toLocaleDateString(),
       }));
-
       setOrdersList((_prevOrders) => [...dynamicOrders]);
     } catch (error) {
       if (
@@ -113,6 +135,56 @@ const Orders = () => {
   };
 
   useEffect(() => {
+    const fetchData = async () => {
+      if (!agent_token) return;
+      // 1. Fetch customers
+      let customerMap = {};
+      try {
+        const res = await axios.get(
+          `${process.env.REACT_APP_API_URL}/print-agent/all-customers`,
+          {
+            headers: {
+              Authorization: `Bearer ${agent_token}`,
+            },
+          }
+        );
+        res.data.customers.forEach((c) => {
+          customerMap[c._id] = c.full_name;
+        });
+        setCustomerMap(customerMap);
+      } catch (e) {}
+
+      // 2. Fetch orders
+      try {
+        let orders = await axios.get(
+          `${process.env.REACT_APP_API_URL}/print-agent/print-jobs`,
+          {
+            headers: {
+              Authorization: `Bearer ${agent_token}`,
+            },
+          }
+        );
+        const dynamicOrders = orders.data.printJobs.map((job) => ({
+          isSelected: false,
+          customerName: customerMap[job.customer_id] || job.customer_id,
+          jobTitle: job.print_job_title,
+          copies: job.no_of_copies,
+          isColor: job.is_color ? "Yes" : "No",
+          pages: job.pages,
+          fileType: job.file_path.split(".").pop().toUpperCase(),
+          price: job.total_cost,
+          status:
+            job.payment_status.charAt(0).toUpperCase() +
+            job.payment_status.slice(1),
+          createdDate: new Date(job.created_at).toLocaleDateString(),
+        }));
+        setOrdersList(dynamicOrders);
+      } catch (error) {
+        // ... your error handling
+      }
+    };
+    fetchData();
+    get_Customers();
     get_Orders();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
