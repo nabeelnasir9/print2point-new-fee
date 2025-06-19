@@ -47,7 +47,7 @@ const Footer = () => {
                   <Link className="footer-link">Fort Lauderdale</Link>
                   <Link className="footer-link">Miami</Link>
                   <p className="footer-heading">Michigan</p>
-                  <Link className="footer-link">Coming Soon</Link>
+                  <Link className="footer-link">Detroit/Redford</Link>
                 </Grid>
                 <Grid item xs={6} sm={4} md={4} lg={4} xl={4}>
                   <p className="footer-heading">Prices</p>
