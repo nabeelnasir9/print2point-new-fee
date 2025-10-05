@@ -21,11 +21,7 @@ const columns = [
     label: "Order Number",
     minWidth: 120,
   },
-  // {
-  //   id: "FileType",
-  //   label: "File Type",
-  //   minWidth: 80,
-  // },
+ 
   // {
   //   id: "Price",
   //   label: "Price",
