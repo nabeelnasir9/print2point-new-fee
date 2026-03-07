@@ -4,9 +4,11 @@
   margin-top: -250px;
 }
 .home-box {
-  background-color: #f4f4f6;
+  background: linear-gradient(135deg, #ffffff 0%, #fdf4ec 100%);
   border-radius: 36px;
   padding: 70px 50px;
+  box-shadow: 0 20px 60px rgba(247, 128, 26, 0.08), 0 4px 20px rgba(0,0,0,0.06);
+  border: 1px solid rgba(247, 128, 26, 0.1);
 }
 
 .modal-header-left {
@@ -15,18 +17,25 @@
   gap: 15px;
 }
 .home-input-title {
-  color: #16151ce5;
-  /* font-family: "Switzer-Light"; */
-  font-size: 16px;
-  font-weight: 300;
-  margin-top: 15px;
-  margin-bottom: 10px;
+  color: #3d3c47;
+  font-size: 14px;
+  font-weight: 600;
+  margin-top: 18px;
+  margin-bottom: 8px;
+  letter-spacing: 0.01em;
 }
 .home-input-main {
-  border: 1px solid #a2a1a833;
-  height: 56px;
-  border-radius: 10px;
-  padding: 0px 10px;
+  border: 1.5px solid #e8e8ec;
+  height: 52px;
+  border-radius: 12px;
+  padding: 0px 14px;
+  background-color: #fafafa;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.home-input-main:focus-within {
+  border-color: #f7801a;
+  box-shadow: 0 0 0 3px rgba(247, 128, 26, 0.1);
+  background-color: #fff;
 }
 .home-input-main > input {
   width: 100%;
@@ -39,8 +48,10 @@
 }
 .home-form-main {
   background-color: #ffffff;
-  border-radius: 25px;
-  padding: 20px;
+  border-radius: 24px;
+  padding: 30px 28px;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.08), 0 2px 12px rgba(247, 128, 26, 0.06);
+  border: 1px solid rgba(247, 128, 26, 0.12);
 }
 .home-textarea-main {
   border: 1px solid #a2a1a833;
@@ -62,15 +73,20 @@
   text-decoration: none;
   display: inline-block;
   cursor: pointer;
-  background-color: #fff;
+  background-color: #fffaf5;
   height: 133px;
-  border-radius: 10px;
+  border-radius: 14px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border: 1px dashed #f7801a;
+  border: 1.5px dashed #f7801a;
   padding: 10px;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+.upload-button:hover {
+  background-color: #fff4e8;
+  box-shadow: 0 0 0 3px rgba(247, 128, 26, 0.1);
 }
 .upload-button-title {
   color: #16151c;
@@ -97,28 +113,35 @@
   margin-top: 20px;
 }
 .home-form-submit-btn > button {
-  background-color: #f7801a;
+  background: linear-gradient(135deg, #f7801a 0%, #e86f0a 100%);
   width: 137px;
-  height: 45px;
-  border-radius: 10px;
+  height: 46px;
+  border-radius: 12px;
   color: #fff;
-  /* font-family: "Lexend"; */
-  font-size: 16px;
-  font-weight: 500;
+  font-size: 15px;
+  font-weight: 600;
+  box-shadow: 0 4px 14px rgba(247, 128, 26, 0.35);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.home-form-submit-btn > button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(247, 128, 26, 0.45);
 }
 .home-box-left {
   height: 100%;
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
+  justify-content: center;
   padding: 0px 25px;
   align-items: flex-start;
+  gap: 8px;
 }
 .home-box-left-title {
   color: #1e1e24;
-  /* font-family: "Switzer-Semibold"; */
   font-size: 50px;
-  font-weight: 600;
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
 }
 .home-box-left-text {
   color: #4c4c5c;
@@ -131,13 +154,19 @@
   background-color: #1e1e24;
   border: 1px solid #1e1e24;
   width: 153px;
-  height: 46px;
+  height: 48px;
   border-radius: 100px;
-  /* font-family: "Inter"; */
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 600;
   color: #ffffff;
-  margin-top: 15px;
+  margin-top: 20px;
+  box-shadow: 0 4px 14px rgba(30, 30, 36, 0.25);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+}
+.get-started-btn:hover {
+  background-color: #2e2e38;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(30, 30, 36, 0.35);
 }
 .modal-from-heading {
   color: #16151c;
@@ -683,24 +712,26 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
+  background: rgba(247, 128, 26, 0.06);
+  border-radius: 12px;
+  padding: 10px 14px;
+  gap: 14px;
 }
 .home-list-type {
   color: #4c4c5c;
-  /* font-family: "Switzer-Regular"; */
   font-size: 18px;
   font-weight: 400;
   width: 20px;
 }
 .home-list-text {
   color: #4c4c5c;
-  /* font-family: "Switzer-Regular"; */
-  font-size: 15px;
-  font-weight: 400;
+  font-size: 14px;
+  font-weight: 500;
 }
 .home-list > img {
-  width: 40px;
-  margin-right: 20px;
+  width: 32px;
+  margin-right: 0px;
 }
 #home-box-left-title {
   /* margin-left: 130px; */
@@ -936,36 +967,107 @@ button.coupon-apply-btn {
 }
 
 .home-p-tags {
-  font-size: 25px;
-  font-weight: 900;
+  font-size: 22px;
+  font-weight: 800;
+  color: #1e1e24;
+  position: relative;
+  padding-left: 10px;
+}
+.home-p-tags::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 70%;
+  background-color: #f7801a;
+  border-radius: 2px;
 }
 
 .p-tag-container {
   display: flex;
-  flex-direction: column;
-  width: 50%;
-  gap: 10px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+  gap: 8px 24px;
 }
 
 .p-tag-home-container {
   display: flex;
-  gap: 40px;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  margin-top: 10px;
 }
 
 /* reduce size of .home-p-tags on mobile */
 
 @media only screen and (max-width: 600px) {
+  .home-box {
+    padding: 30px 20px;
+    border-radius: 20px;
+  }
+
+  .home-box-left {
+    padding: 0px;
+    gap: 4px;
+  }
+
+  .home-box-left-title {
+    font-size: 24px !important;
+  }
+
   .p-tag-container {
-    text-align: center;
     width: 100%;
+    flex-direction: column;
+    gap: 4px;
   }
 
   .p-tag-home-container {
     flex-direction: column;
-    gap: 40px;
+    gap: 16px;
   }
+
   .home-p-tags {
-    font-size: 1.4rem;
+    font-size: 1.2rem;
+  }
+
+  .home-list {
+    padding: 8px 12px;
+    margin-bottom: 10px;
+  }
+
+  .home-list-text {
+    font-size: 13px;
+  }
+
+  .get-started-btn {
+    width: 100%;
+    margin-top: 12px;
+  }
+
+  .home-form-main {
+    padding: 20px 16px;
+    border-radius: 16px;
+    margin-top: 16px;
+  }
+
+  .home-form-submit-btn {
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+  }
+
+  .home-form-submit-btn > button {
+    width: 100% !important;
+    height: auto !important;
+    min-height: 46px;
+    padding: 12px 16px !important;
+    font-size: 13px !important;
+    white-space: normal;
+    word-break: break-word;
+    line-height: 1.3;
   }
 }
 

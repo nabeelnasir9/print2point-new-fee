@@ -1040,11 +1040,6 @@ const [showPassword, setShowPassword] = useState(false);
                       </button>
                     </div>
                   </div>
-                  <p style={{ marginTop: "50px" }}>
-                    We provide 24-hour printing services for standard 8.5x11
-                    paper, in both color and black & white, for on-demand pickup
-                    or delivery
-                  </p>
                 </div>
               </Grid>
 
@@ -1124,6 +1119,9 @@ const [showPassword, setShowPassword] = useState(false);
                 </div>
               </Grid>
             </Grid>
+            <p style={{ textAlign: "center", fontSize: "14px", color: "#a2a1a8", lineHeight: "1.6", borderTop: "1px solid rgba(0,0,0,0.08)", paddingTop: "20px", marginTop: "30px" }}>
+              We provide 24-hour printing services for standard 8.5x11 paper, in both color and black &amp; white, for on-demand pickup or delivery
+            </p>
           </div>
         </Grid>
         <div
@@ -1133,7 +1131,7 @@ const [showPassword, setShowPassword] = useState(false);
             flexDirection: "column",
             alignItems: "center",
             width: "100%",
-            marginTop: "20px",
+            marginTop: "60px",
             backgroundColor: "#fff",
           }}
         >
@@ -1165,6 +1163,8 @@ const [showPassword, setShowPassword] = useState(false);
           <div
             style={{
               marginTop: "30px",
+              marginBottom: "60px",
+              width: "70%",
             }}
           >
             <ElfsightGoogleReviews />
@@ -1923,6 +1923,26 @@ const [showPassword, setShowPassword] = useState(false);
           </p>
         </div>
 
+        {Printed_file?.after_hours_fee > 0 && (
+          <div className="modal-price-list-2">
+            <p className="modal-price-title" style={{ color: "#e67e22", fontWeight: "bold" }}>
+              ⚠️ After Hours Fee (6PM–9AM)
+            </p>
+            <p className="modal-price-price" style={{ color: "#e67e22", fontWeight: "bold" }}>
+              ${Printed_file.after_hours_fee.toFixed(2)}
+            </p>
+          </div>
+        )}
+
+        {Printed_file?.after_hours_fee > 0 && (
+          <div style={{ background: "#fff3cd", border: "1px solid #ffc107", borderRadius: "8px", padding: "10px 14px", margin: "8px 0", display: "flex", alignItems: "flex-start", gap: "8px" }}>
+            <span style={{ fontSize: "18px" }}>⏰</span>
+            <p style={{ margin: 0, fontSize: "13px", color: "#856404" }}>
+              <strong>After Hours Order:</strong> A $12.99 fee applies for orders placed between 6PM and 9AM (US Pacific Time).
+            </p>
+          </div>
+        )}
+
         {discountAmount > 0 && (
           <div className="modal-price-list-2">
             <p className="modal-price-title">Discount</p>
@@ -2019,6 +2039,26 @@ const [showPassword, setShowPassword] = useState(false);
               : "0.00"}
           </p>
         </div>
+
+        {Printed_file?.after_hours_fee > 0 && (
+          <div className="modal-price-list-2">
+            <p className="modal-price-title" style={{ color: "#e67e22", fontWeight: "bold" }}>
+              ⚠️ After Hours Fee (6PM–9AM)
+            </p>
+            <p className="modal-price-price" style={{ color: "#e67e22", fontWeight: "bold" }}>
+              ${Printed_file.after_hours_fee.toFixed(2)}
+            </p>
+          </div>
+        )}
+
+        {Printed_file?.after_hours_fee > 0 && (
+          <div style={{ background: "#fff3cd", border: "1px solid #ffc107", borderRadius: "8px", padding: "10px 14px", margin: "8px 0", display: "flex", alignItems: "flex-start", gap: "8px" }}>
+            <span style={{ fontSize: "18px" }}>⏰</span>
+            <p style={{ margin: 0, fontSize: "13px", color: "#856404" }}>
+              <strong>After Hours Order:</strong> A $12.99 fee applies for orders placed between 6PM and 9AM (US Pacific Time).
+            </p>
+          </div>
+        )}
 
         {discountAmount > 0 && (
           <div className="modal-price-list-2">

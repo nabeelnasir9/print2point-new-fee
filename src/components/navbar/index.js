@@ -94,20 +94,12 @@ const Navbar = ({ onClickSignIn, onClickSignUp }) => {
               {user ? (
                 <AvatarDemo name={user.full_name.charAt(0)} />
               ) : (
-                <>
-                  <button
-                    className="navbar-sign-in-btn"
-                    onClick={onClickSignIn}
-                  >
-                    Sign in
-                  </button>
-                  <button
-                    className="navbar-sign-up-btn"
-                    onClick={onClickSignUp}
-                  >
-                    Sign up
-                  </button>
-                </>
+                <button
+                  className="navbar-get-started-btn"
+                  onClick={onClickSignIn}
+                >
+                  Get Started
+                </button>
               )}
             </div>
           </div>
