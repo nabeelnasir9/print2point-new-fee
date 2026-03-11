@@ -2,6 +2,7 @@ import React from "react";
 import { marked } from "marked";
 import { Help } from "@mui/icons-material";
 import Navbar from "../../components/navbar";
+import AnnouncementBanner from "../../components/announcement-banner";
 import { usePdf } from "./pdf.hooks";
 import "./index.css";
 
@@ -11,6 +12,7 @@ const MarkdownEditor = () => {
   return (
     <>
       <Navbar />
+      <AnnouncementBanner />
       <div className="editor-container">
         <div className="content-wrapper">
           <h1 className="editor-title">Markdown to PDF Converter</h1>

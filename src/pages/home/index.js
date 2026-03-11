@@ -7,6 +7,7 @@ import React, { useEffect, useState } from "react";
 import { Search2, Map as Map2 } from "./../../svg";
 import {
   Navbar,
+  AnnouncementBanner,
   Footer,
   Model,
   Input,
@@ -975,6 +976,7 @@ const [showPassword, setShowPassword] = useState(false);
         onClickSignIn={() => setLoginModal(true)}
         onClickSignUp={() => setSignUpModal(true)}
       />
+      <AnnouncementBanner />
       <Grid container spacing={0}>
         <Grid item xs={1} sm={1} md={1} lg={1} xl={1} />
         <Grid

@@ -1,4 +1,5 @@
 import Navbar from "../../components/navbar";
+import AnnouncementBanner from "../../components/announcement-banner";
 
 const Privacy = () => {
   const containerStyle = {
@@ -32,6 +33,7 @@ const Privacy = () => {
   return (
     <>
       <Navbar />
+      <AnnouncementBanner />
       <div style={containerStyle}>
         <h1 style={headingStyle}>Privacy Policy</h1>
 
