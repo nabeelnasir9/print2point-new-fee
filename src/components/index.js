@@ -1,4 +1,5 @@
 import Navbar from "./navbar";
+import AnnouncementBanner from "./announcement-banner";
 import Footer from "./footer";
 import Model from "./modal";
 import Input from "./input";
@@ -10,6 +11,7 @@ import ActivityChart from "./activity-chart";
 export {
   Navbar,
   Footer,
+  AnnouncementBanner,
   Model,
   Input,
   Button,

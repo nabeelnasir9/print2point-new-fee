@@ -1,4 +1,5 @@
 import Navbar from "../../components/navbar";
+import AnnouncementBanner from "../../components/announcement-banner";
 
 const TermsAndConditions = () => {
   const containerStyle = {
@@ -27,6 +28,7 @@ const TermsAndConditions = () => {
   return (
     <>
       <Navbar />
+      <AnnouncementBanner />
       <div style={containerStyle}>
         <h1 style={headingStyle}>Terms and Conditions</h1>
 
